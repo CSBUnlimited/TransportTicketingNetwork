@@ -1,20 +1,25 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+2016 Intake Weekend Batch 3rd Year CSSE Project...
+Web Based Online Transport Ticketing System 
+
+BackEnd Technologies (API)
+---------------------
+* DotNet Core 2.1
+* SQL Server
+
+FrontEnd Technologies
+--------------------
+* React TS
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+TODO: ---
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+TODO: ---
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+* IT16158764 B.M.C.S Basnayake chathurangabasnayake@outlook.com
+* IT16110380 P.H.R Dharmasena ravinduta@gmail.com
+* IT16225916 R.W.D.K.P.Rajapakshe kaveendrarajapakshe@gmail.com
+* IT16105744 Witharana T.L.C lak.deve94@gmail.com
+* IT16133914 L.L.K.S.Lokuge kawee@live.co.uk
