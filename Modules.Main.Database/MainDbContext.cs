@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Modules.Main.Database.TableConfigurations;
 using Modules.Main.Models;
 
 namespace Modules.Main.Database
@@ -19,7 +20,8 @@ namespace Modules.Main.Database
         {
             #region Database Table Configuration
 
-
+            modelBuilder.ApplyConfiguration(new ApplicationUserTableConfiguration());
+            modelBuilder.ApplyConfiguration(new ApplicationUserTokenTableConfiguration());
 
             #endregion
 

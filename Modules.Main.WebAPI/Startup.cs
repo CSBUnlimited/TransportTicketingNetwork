@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Modules.Main.Database;
 
 namespace Modules.Main.WebAPI
 {
@@ -24,6 +26,9 @@ namespace Modules.Main.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Setup DbContext Connection String
+            services.AddDbContext<MainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -36,6 +41,17 @@ namespace Modules.Main.WebAPI
             }
 
             app.UseMvc();
+
+            // Database Initialization 
+            //DbContextOptionsBuilder<MainDbContext> optionsBuilder = new DbContextOptionsBuilder<MainDbContext>();
+            //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
+
+            //using (MainDbContext context = new MainDbContext(optionsBuilder.Options))
+            //{
+            //    Console.WriteLine("Database Migration started...");
+            //    //context.InitializeDatabase();
+            //    Console.WriteLine("Database Migrated and Seeded...");
+            //}
         }
     }
 }
