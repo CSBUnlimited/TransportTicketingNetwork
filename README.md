@@ -1,4 +1,6 @@
 # Introduction 
+[![Build status](https://csbunlimited.visualstudio.com/TransportTicketingNetwork/_apis/build/status/TransportTicketingNetwork-CI)](https://csbunlimited.visualstudio.com/TransportTicketingNetwork/_build/latest?definitionId=1)
+
 2016 Intake Weekend Batch 3rd Year CSSE Project...
 Web Based Online Transport Ticketing System 
 
