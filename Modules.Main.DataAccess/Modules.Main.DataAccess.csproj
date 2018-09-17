@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
+    <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
+    <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -12,6 +12,8 @@ namespace Modules.Main.Models
         public DateTime EffectiveDateTime { get; set; }
         public DateTime ExpireDateTime { get; set; }
 
+        public User User { get; set; }
+
         public IEnumerable<ApplicationUserToken> ApplicationUserTokens { get; set; }
 
         public ApplicationUser()

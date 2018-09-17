@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Base.Repositories\Common.Base.Repositories.csproj" />
+    <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
+    <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
+    <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
+  </ItemGroup>
+
 </Project>

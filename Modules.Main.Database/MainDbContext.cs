@@ -22,6 +22,7 @@ namespace Modules.Main.Database
 
             modelBuilder.ApplyConfiguration(new ApplicationUserTableConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserTokenTableConfiguration());
+            modelBuilder.ApplyConfiguration(new UserTableConfiguration());
 
             #endregion
 
