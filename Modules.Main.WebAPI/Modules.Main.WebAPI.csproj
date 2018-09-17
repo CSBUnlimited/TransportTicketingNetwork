@@ -15,10 +15,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
+    <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
+    <ProjectReference Include="..\Modules.Main.DataAccess\Modules.Main.DataAccess.csproj" />
     <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
+    <ProjectReference Include="..\Modules.Main.Repositories\Modules.Main.Repositories.csproj" />
+    <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
   </ItemGroup>
 
 </Project>
