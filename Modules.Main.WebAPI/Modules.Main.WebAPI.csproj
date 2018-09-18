@@ -15,16 +15,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
+    <ProjectReference Include="..\Modules.Main.Common.Configurations\Modules.Main.Common.Configurations.csproj" />
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
     <ProjectReference Include="..\Modules.Main.DataAccess\Modules.Main.DataAccess.csproj" />
     <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
     <ProjectReference Include="..\Modules.Main.Repositories\Modules.Main.Repositories.csproj" />
     <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\..\..\..\..\.nuget\packages\automapper\7.0.1\lib\netcoreapp2.0\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

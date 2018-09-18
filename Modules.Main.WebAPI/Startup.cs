@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Modules.Main.Common.Configurations;
 using Modules.Main.Database;
 
 namespace Modules.Main.WebAPI
@@ -29,6 +31,41 @@ namespace Modules.Main.WebAPI
             // Setup DbContext Connection String
             services.AddDbContext<MainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
+            // Allow any origin to access 
+            // Not secure but only for this Assignment
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+            });
+
+
+            #region Auto Mapper Configs
+
+            MapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfileConfiguration());
+            });
+
+            IMapper mapper = config.CreateMapper();
+
+            services.AddSingleton(mapper);
+
+            #endregion
+
+            // Dependency Injection
+            services.RegisterDependencies();
+
+            // Swagger Configure Services
+            services.SwaggerConfigureServices();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -40,18 +77,27 @@ namespace Modules.Main.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            // Access-Control-Allow-Origin
+            app.UseCors("AllowAll");
+
+
+
+
             app.UseMvc();
 
-            // Database Initialization 
-            //DbContextOptionsBuilder<MainDbContext> optionsBuilder = new DbContextOptionsBuilder<MainDbContext>();
-            //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
+            //Swagger Configure
+            app.UseSwaggerConfigure();
 
-            //using (MainDbContext context = new MainDbContext(optionsBuilder.Options))
-            //{
-            //    Console.WriteLine("Database Migration started...");
-            //    //context.InitializeDatabase();
-            //    Console.WriteLine("Database Migrated and Seeded...");
-            //}
+            // Database Initialization 
+            DbContextOptionsBuilder<MainDbContext> optionsBuilder = new DbContextOptionsBuilder<MainDbContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
+
+            using (MainDbContext context = new MainDbContext(optionsBuilder.Options))
+            {
+                Console.WriteLine("Database Migration started...");
+                //context.InitializeDatabase();
+                Console.WriteLine("Database Migrated and Seeded...");
+            }
         }
     }
 }

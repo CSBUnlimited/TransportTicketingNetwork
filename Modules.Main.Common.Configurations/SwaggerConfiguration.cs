@@ -1,19 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.PlatformAbstractions;
 
-namespace Modules.Main.WebAPI.Configurations
+namespace Modules.Main.Common.Configurations
 {
     /// <summary>
-    /// Swagger Configuration - Extention
+    /// Swagger Configuration - Extenstion
     /// </summary>
     public static class SwaggerConfiguration
     {
         /// <summary>
-        /// Swagger Configure Services - Extention Method
+        /// Swagger Configure Services - Extenstion Method
         /// </summary>
         /// <param name="services">Service Collection</param>
         /// <returns>Service Collection</returns>
@@ -49,7 +47,7 @@ namespace Modules.Main.WebAPI.Configurations
                 });
                 c.AddSecurityRequirement(security);
 
-                //var filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "FastFoodOnline.xml");
+                //string filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "FastFoodOnline.xml");
                 //c.IncludeXmlComments(filePath);
             });
 
@@ -57,7 +55,7 @@ namespace Modules.Main.WebAPI.Configurations
         }
 
         /// <summary>
-        /// Swagger Configure - Extention Method
+        /// Swagger Configure - Extenstion Method
         /// </summary>
         /// <param name="app">Application Builder</param>
         /// <returns>Application Builder</returns>

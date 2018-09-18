@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Modules.Common.Configurations
+namespace Modules.Main.Common.Configurations
 {
     public class AutoMapperProfileConfiguration : Profile
     {

@@ -7,20 +7,20 @@ using Modules.Main.DataAccess;
 using Modules.Main.Repositories;
 using Modules.Main.Services;
 
-namespace Modules.Main.WebAPI.Configurations
+namespace Modules.Main.Common.Configurations
 {
-    public static class DependancyInjectionConfiguration
+    public static class DependencyInjectionConfiguration
     {
         /// <summary>
-        /// Register Dependancies
+        /// Register Dependencies
         /// </summary>
         /// <param name="services">Service Collection</param>
         /// <returns>Service Collection</returns>
-        public static IServiceCollection RegisterDependancies(this IServiceCollection services)
+        public static IServiceCollection RegisterDependencies(this IServiceCollection services)
         {
             #region Other - Dependancies
 
-            // To get configuration data
+            // To get authentication token info
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             #endregion
