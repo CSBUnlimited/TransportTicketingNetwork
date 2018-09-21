@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Modules.Main.Models
 {
-    class Route
+    public class Route
     {
-        public String RouteID { get; set; }
+        public string Id { get; set; }
 
-        public String StartBusStopID { get; set; }
+        public string StartBusStopId { get; set; }
 
         public int Distance { get; set; }
 

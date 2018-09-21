@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Modules.Main.Models
 {
-    class BusStops
+    public class BusStop
     {
-        public String BusStopId { get; set; }
+        public string Id { get; set; }
 
-        public String BusStopName { get; set; }
+        public string BusStopName { get; set; }
 
     }
 }
