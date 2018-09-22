@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.100" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.3" />
@@ -18,6 +19,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.3" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.6.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
@@ -30,12 +35,8 @@
     <ProjectReference Include="..\Modules.Main.DTOs\Modules.Main.DTOs.csproj" />
     <ProjectReference Include="..\Modules.Main.Repositories\Modules.Main.Repositories.csproj" />
     <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\..\..\..\..\..\..\.nuget\packages\automapper\7.0.1\lib\netcoreapp2.0\AutoMapper.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Utilities.Logging.Common.Configurations\Utilities.Logging.Common.Configurations.csproj" />
+    <ProjectReference Include="..\Utilities.Logging.Common.Filters\Utilities.Logging.Common.Filters.csproj" />
   </ItemGroup>
 
 </Project>

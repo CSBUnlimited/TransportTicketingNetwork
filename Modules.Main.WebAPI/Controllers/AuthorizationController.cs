@@ -5,14 +5,24 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Modules.Main.DTOs.User;
+using Utilities.Logging.Common.Attributes;
 
 namespace Modules.Main.WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [EnableActivityLog]
     public class AuthorizationController : ControllerBase
     {
+        private readonly ILogger<AuthorizationController> _logger;
+
+        public AuthorizationController(ILogger<AuthorizationController> logger)
+        {
+            _logger = logger;
+        }
+
         /// <summary>
         /// User Registration - Async
         /// </summary>
@@ -27,9 +37,11 @@ namespace Modules.Main.WebAPI.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> UserRegistrationAsync([FromBody]UserRequest userRequest)
         {
-            
+            _logger.LogWarning("This is a test Warning message {@UserRequest}", userRequest);
 
-            return StatusCode((int)HttpStatusCode.OK);
+            await Task.Run(() => { });
+
+            return StatusCode((int)HttpStatusCode.OK, userRequest);
         }
     }
 }
