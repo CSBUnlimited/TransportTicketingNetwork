@@ -2,7 +2,7 @@
 {
     public class SubRoute
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public Route Route { get; set; }
         public string RouteId { get; set; }
