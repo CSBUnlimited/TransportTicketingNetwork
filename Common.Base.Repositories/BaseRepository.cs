@@ -1,9 +1,15 @@
 ﻿using Common.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Common.Base.Repositories
 {
-    public abstract class BaseRepository<TContext> : IRepository<TContext> where TContext : class
+    public abstract class BaseRepository : IRepository
     {
-        public TContext DbContext { protected get; set; }
+        protected virtual DbContext DbContext { get; }
+
+        protected BaseRepository(DbContext dbContext)
+        {
+            DbContext = dbContext;
+        }
     }
 }

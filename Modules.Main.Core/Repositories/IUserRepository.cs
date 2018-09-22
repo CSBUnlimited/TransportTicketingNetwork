@@ -3,7 +3,7 @@ using Modules.Main.Database;
 
 namespace Modules.Main.Core.Repositories
 {
-    public interface IUserRepository : IRepository<MainDbContext>
+    public interface IUserRepository : IRepository
     {
 
     }

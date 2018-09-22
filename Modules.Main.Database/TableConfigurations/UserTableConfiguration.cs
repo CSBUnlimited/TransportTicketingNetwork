@@ -20,6 +20,13 @@ namespace Modules.Main.Database.TableConfigurations
                 .HasMaxLength(20)
                 .IsRequired();
 
+            builder.Property(u => u.Email)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(u => u.Gender)
+                .IsRequired();
+
             builder.HasOne(u => u.ApplicationUser).WithOne(au => au.User).HasForeignKey<User>(u => u.ApplicationUserId);
         }
     }

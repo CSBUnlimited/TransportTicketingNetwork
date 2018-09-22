@@ -5,8 +5,17 @@ using Modules.Main.Models;
 
 namespace Modules.Main.Repositories
 {
-    public class UserRepository : BaseRepository<MainDbContext>, IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
+        protected new MainDbContext DbContext { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dbContext">MainDbContext</param>
+        public UserRepository(MainDbContext dbContext) : base(dbContext)
+        {
+            DbContext = dbContext;
+        }
     }
 }

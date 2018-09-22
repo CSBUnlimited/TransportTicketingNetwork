@@ -1,7 +1,6 @@
 ﻿namespace Common.Core.Repositories
 {
-    public interface IRepository<TContext> where TContext : class
+    public interface IRepository
     {
-        TContext DbContext { set; }
     }
 }

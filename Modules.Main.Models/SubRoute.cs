@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Modules.Main.Models
+﻿namespace Modules.Main.Models
 {
-    class SubRoute
+    public class SubRoute
     {
-        public String SubRouteId { get; set; }
+        public string Id { get; set; }
 
-        public String RouteId { get; set; }
+        public Route Route { get; set; }
+        public string RouteId { get; set; }
 
-        public String EndBusStopId { get; set; }
+        public BusStop EndBusStop { get; set; }
+        public string EndBusStopId { get; set; }
 
         public int Distance { get; set; }
-
         public int Fare { get; set; }
     }
 }

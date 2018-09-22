@@ -10,26 +10,19 @@ namespace Modules.Main.DataAccess
         #region Repositories
 
         public IUserRepository UserRepository { get; }
+        public IApplicationUserRepository ApplicationUserRepository { get; }
 
         #endregion
 
         public MainUnitOfWork
         (
             MainDbContext dbContext,
-            IUserRepository userRepository
+            IUserRepository userRepository,
+            IApplicationUserRepository applicationUserRepository
         ) : base(dbContext)
         {
-            #region Repositories
-
             UserRepository = userRepository;
-
-            #endregion
-
-            #region DbContext
-
-            UserRepository.DbContext = dbContext;
-
-            #endregion
+            ApplicationUserRepository = applicationUserRepository;
         }
     }
 }
