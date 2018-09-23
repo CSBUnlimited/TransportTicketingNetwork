@@ -17,8 +17,20 @@ using Utilities.Logging.Common.Filters;
 
 namespace Modules.Main.WebAPI
 {
+    /// <summary>
+    /// Startup class
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Configurations
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration">Injecting configurations</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,9 +38,10 @@ namespace Modules.Main.WebAPI
             Log.Logger = new LoggerConfiguration().ConfigureSerilog(configuration);
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">ServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
             // Setup DbContext Connection String
@@ -68,7 +81,7 @@ namespace Modules.Main.WebAPI
             services.RegisterDependencies();
 
             // Swagger Configure Services
-            services.SwaggerConfigureServices();
+            services.SwaggerConfigureServices(Configuration.GetSection("Swagger")["CommentsXMLFilePath"]);
 
             // Add Authentication Services
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -89,7 +102,12 @@ namespace Modules.Main.WebAPI
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddSerilog();

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Modules.Main.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Modules.Main.WebAPI.Controllers.AuthorizationController">
+            <summary>
+            Authorization Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.UserRegistrationAsync(Modules.Main.DTOs.User.UserRequest)">
+            <summary>
+            User Registration - Async
+            </summary>
+            <param name="userRequest">FromBody - UserRequest</param>
+            <returns>UserResponse</returns>
+            <response code="200">User registered</response>
+            <response code="400">Bad request by client</response>
+            <response code="500">Something went wrong from Server side</response>
+        </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
+            <summary>
+            Log Testings Controller - Purpose is to test logs are working correctly
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
+            <summary>
+            This end point enabled automatic runtime logs
+            For every request there will two logs. One for the request and other for response
+            </summary>
+            <param name="testLogRequest">FromBody - TestLogRequest</param>
+            <returns>UserResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+            <response code="500">Something went wrong from Server side</response>
+        </member>
+        <member name="T:Modules.Main.WebAPI.Program">
+            <summary>
+            Program Class - First class that calls when app started
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Program.Main(System.String[])">
+            <summary>
+            First method calls when app started
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creating the Web Host
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Modules.Main.WebAPI.Startup">
+            <summary>
+            Startup class
+            </summary>
+        </member>
+        <member name="P:Modules.Main.WebAPI.Startup.Configuration">
+            <summary>
+            Configurations
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">Injecting configurations</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">ServiceCollection</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

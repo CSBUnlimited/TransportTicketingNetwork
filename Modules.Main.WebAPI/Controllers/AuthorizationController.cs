@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Modules.Main.DTOs.User;
@@ -11,6 +7,10 @@ using Utilities.Logging.Common.Attributes;
 
 namespace Modules.Main.WebAPI.Controllers
 {
+
+    /// <summary>
+    /// Authorization Controller
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     [EnableActivityLog]
@@ -18,6 +18,10 @@ namespace Modules.Main.WebAPI.Controllers
     {
         private readonly ILogger<AuthorizationController> _logger;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger">Logger injection</param>
         public AuthorizationController(ILogger<AuthorizationController> logger)
         {
             _logger = logger;
@@ -37,10 +41,10 @@ namespace Modules.Main.WebAPI.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> UserRegistrationAsync([FromBody]UserRequest userRequest)
         {
-            _logger.LogWarning("This is a test Warning message {@UserRequest}", userRequest);
+            _logger.LogInformation("This is a test Warning message {@UserRequest}", userRequest);
 
             await Task.Run(() => { });
-
+            
             return StatusCode((int)HttpStatusCode.OK, userRequest);
         }
     }

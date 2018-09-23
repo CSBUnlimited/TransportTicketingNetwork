@@ -8,6 +8,11 @@ namespace Utilities.Logging.Extensions
 {
     public static class LoggingExtension
     {
+        private static void SetExchange(string exchange)
+        {
+            LogContext.PushProperty("Exchange", exchange);
+        }
+
         /// <summary>
         /// Extension method for log activity as information
         /// </summary>
@@ -52,11 +57,6 @@ namespace Utilities.Logging.Extensions
         public static void Exception(this ILogger logger, string message, string ExceptionSource, IDictionary ExceptionData, string StackTrace)
         {
             logger.LogError("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, ExceptionSource, JsonConvert.SerializeObject(ExceptionData), StackTrace);
-        }
-
-        private static void SetExchange(string exchange)
-        {
-            LogContext.PushProperty("Exchange", exchange);
         }
     }
 }

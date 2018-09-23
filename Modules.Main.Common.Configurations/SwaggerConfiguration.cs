@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
@@ -14,15 +15,16 @@ namespace Modules.Main.Common.Configurations
         /// Swagger Configure Services - Extenstion Method
         /// </summary>
         /// <param name="services">Service Collection</param>
+        /// <param name="xmlCommentsFilePath">XML comments file path</param>
         /// <returns>Service Collection</returns>
-        public static IServiceCollection SwaggerConfigureServices(this IServiceCollection services)
+        public static IServiceCollection SwaggerConfigureServices(this IServiceCollection services, string xmlCommentsFilePath = null)
         {
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
                     new Swashbuckle.AspNetCore.Swagger.Info()
                     {
-                        Title = "Public Transport Ticketing Network APIs",
+                        Title = "Public Transport Ticketing Network Main Module APIs",
                         Version = "v1",
                         Description = "This is the documentation for Public Transport Ticketing Network",
                         TermsOfService = "None",
@@ -47,8 +49,11 @@ namespace Modules.Main.Common.Configurations
                 });
                 c.AddSecurityRequirement(security);
 
-                //string filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "FastFoodOnline.xml");
-                //c.IncludeXmlComments(filePath);
+                if (!string.IsNullOrEmpty(xmlCommentsFilePath))
+                {
+                    string filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, xmlCommentsFilePath);
+                    c.IncludeXmlComments(filePath);
+                }
             });
 
             return services;

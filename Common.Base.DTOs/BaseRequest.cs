@@ -4,7 +4,7 @@ namespace Common.Base.DTOs
 {
     public class BaseRequest
     {
-        public DateTime RequestedDateTime { get; set; }
+        public DateTime RequestedDateTime { get; }
 
         public BaseRequest()
         {
