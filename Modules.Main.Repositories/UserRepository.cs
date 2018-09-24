@@ -1,19 +1,19 @@
 ﻿using Common.Base.Repositories;
 using Modules.Main.Core.Repositories;
-using Modules.Main.Database;
 using Modules.Main.Models;
+using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        protected new MainDbContext DbContext { get; }
+        protected new TransportTicketingNetworkDbContext DbContext { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="dbContext">MainDbContext</param>
-        public UserRepository(MainDbContext dbContext) : base(dbContext)
+        /// <param name="dbContext">TransportTicketingNetworkDbContext</param>
+        public UserRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
         {
             DbContext = dbContext;
         }

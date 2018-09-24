@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Common.Core.DataAccess\Common.Core.DataAccess.csproj" />
     <ProjectReference Include="..\Common.Core.Repositories\Common.Core.Repositories.csproj" />
-    <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
   </ItemGroup>
 

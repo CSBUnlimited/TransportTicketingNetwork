@@ -3,20 +3,20 @@ using System.Threading.Tasks;
 using Common.Base.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Modules.Main.Core.Repositories;
-using Modules.Main.Database;
 using Modules.Main.Models;
+using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.Repositories
 {
     public class ApplicationUserRepository : BaseRepository, IApplicationUserRepository
     {
-        protected new MainDbContext DbContext { get; set; }
+        protected new TransportTicketingNetworkDbContext DbContext { get; set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="dbContext">MainDbContext</param>
-        public ApplicationUserRepository(MainDbContext dbContext) : base(dbContext)
+        /// <param name="dbContext">TransportTicketingNetworkDbContext</param>
+        public ApplicationUserRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
         {
             DbContext = dbContext;
         }

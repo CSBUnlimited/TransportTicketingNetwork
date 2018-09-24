@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Modules.Main.Database;
+using TransportTicketingNetwork.Database;
 
-namespace Modules.Main.Database.Migrations
+namespace TransportTicketingNetwork.Database.Migrations
 {
-    [DbContext(typeof(MainDbContext))]
-    [Migration("20180915183124_InitialMigration")]
-    partial class InitialMigration
+    [DbContext(typeof(TransportTicketingNetworkDbContext))]
+    [Migration("20180924054443_AddUSMSchema")]
+    partial class AddUSMSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace Modules.Main.Database.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("ApplicationUsers");
+                    b.ToTable("ApplicationUsers","usm");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.ApplicationUserToken", b =>
@@ -76,7 +76,41 @@ namespace Modules.Main.Database.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ApplicationUserTokens");
+                    b.ToTable("ApplicationUserTokens","usm");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<byte>("Gender");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("Users","usm");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.ApplicationUserToken", b =>
@@ -84,6 +118,14 @@ namespace Modules.Main.Database.Migrations
                     b.HasOne("Modules.Main.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("ApplicationUserTokens")
                         .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.User", b =>
+                {
+                    b.HasOne("Modules.Main.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("User")
+                        .HasForeignKey("Modules.Main.Models.User", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

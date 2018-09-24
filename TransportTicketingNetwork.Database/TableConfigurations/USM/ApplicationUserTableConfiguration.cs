@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Modules.Main.Models;
 
-namespace Modules.Main.Database.TableConfigurations
+namespace TransportTicketingNetwork.Database.TableConfigurations.USM
 {
     public class ApplicationUserTableConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            builder.ToTable("ApplicationUsers", "usm");
+
             builder.HasIndex(au => au.Username).IsUnique();
             builder.Property(au => au.Username)
                 .IsRequired()

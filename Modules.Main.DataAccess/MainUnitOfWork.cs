@@ -1,7 +1,7 @@
 ﻿using Modules.Main.Core.DataAccess;
 using Modules.Main.Core.Repositories;
-using Modules.Main.Database;
 using Common.Base.DataAccess;
+using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.DataAccess
 {
@@ -16,7 +16,7 @@ namespace Modules.Main.DataAccess
 
         public MainUnitOfWork
         (
-            MainDbContext dbContext,
+            TransportTicketingNetworkDbContext dbContext,
             IUserRepository userRepository,
             IApplicationUserRepository applicationUserRepository
         ) : base(dbContext)

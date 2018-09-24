@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
-    <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
     <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
+    <ProjectReference Include="..\TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj" />
   </ItemGroup>
 
 </Project>

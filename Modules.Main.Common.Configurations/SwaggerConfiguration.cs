@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
@@ -26,7 +25,7 @@ namespace Modules.Main.Common.Configurations
                     {
                         Title = "Public Transport Ticketing Network Main Module APIs",
                         Version = "v1",
-                        Description = "This is the documentation for Public Transport Ticketing Network",
+                        Description = "This is the documentation for Public Transport Ticketing Network - Main Module",
                         TermsOfService = "None",
                         Contact = new Swashbuckle.AspNetCore.Swagger.Contact()
                         {

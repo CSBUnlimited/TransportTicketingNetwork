@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Modules.Main.Common.Configurations;
-using Modules.Main.Database;
 using Serilog;
+using TransportTicketingNetwork.Database;
 using Utilities.Logging.Common.Configurations;
 using Utilities.Logging.Common.Filters;
 
@@ -45,7 +45,7 @@ namespace Modules.Main.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // Setup DbContext Connection String
-            services.AddDbContext<MainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<TransportTicketingNetworkDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             #region Add Cors
             // Allow any origin to access
@@ -129,10 +129,10 @@ namespace Modules.Main.WebAPI
             app.UseSwaggerConfigure();
 
             // Database Initialization 
-            //DbContextOptionsBuilder<MainDbContext> optionsBuilder = new DbContextOptionsBuilder<MainDbContext>();
+            //DbContextOptionsBuilder<TransportTicketingNetworkDbContext> optionsBuilder = new DbContextOptionsBuilder<TransportTicketingNetworkDbContext>();
             //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
 
-            //using (MainDbContext context = new MainDbContext(optionsBuilder.Options))
+            //using (TransportTicketingNetworkDbContext context = new TransportTicketingNetworkDbContext(optionsBuilder.Options))
             //{
             //    Console.WriteLine("Database Migration started...");
             //    //context.InitializeDatabase();

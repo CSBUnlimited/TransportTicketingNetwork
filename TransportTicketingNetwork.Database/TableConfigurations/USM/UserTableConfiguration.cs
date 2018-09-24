@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Modules.Main.Models;
 
-namespace Modules.Main.Database.TableConfigurations
+namespace TransportTicketingNetwork.Database.TableConfigurations.USM
 {
     public class UserTableConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users", "usm");
+
             builder.Property(u => u.FirstName)
                 .HasMaxLength(100)
                 .IsRequired();

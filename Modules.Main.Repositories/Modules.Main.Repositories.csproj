@@ -7,8 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Common.Base.Repositories\Common.Base.Repositories.csproj" />
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
-    <ProjectReference Include="..\Modules.Main.Database\Modules.Main.Database.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
+    <ProjectReference Include="..\TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj" />
   </ItemGroup>
 
 </Project>

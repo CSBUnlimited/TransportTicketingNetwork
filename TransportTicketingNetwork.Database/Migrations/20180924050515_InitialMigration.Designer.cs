@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Modules.Main.Database;
+using TransportTicketingNetwork.Database;
 
-namespace Modules.Main.Database.Migrations
+namespace TransportTicketingNetwork.Database.Migrations
 {
-    [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TransportTicketingNetworkDbContext))]
+    [Migration("20180924050515_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +87,15 @@ namespace Modules.Main.Database.Migrations
 
                     b.Property<int>("ApplicationUserId");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100);
+
+                    b.Property<byte>("Gender");
 
                     b.Property<string>("LastName")
                         .IsRequired()

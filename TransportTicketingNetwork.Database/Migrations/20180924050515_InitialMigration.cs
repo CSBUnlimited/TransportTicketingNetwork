@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Modules.Main.Database.Migrations
+namespace TransportTicketingNetwork.Database.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -47,6 +47,30 @@ namespace Modules.Main.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: false),
+                    Mobile = table.Column<string>(maxLength: 20, nullable: false),
+                    Email = table.Column<string>(maxLength: 100, nullable: false),
+                    Gender = table.Column<byte>(nullable: false),
+                    ApplicationUserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_ApplicationUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "ApplicationUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUsers_Username",
                 table: "ApplicationUsers",
@@ -57,12 +81,21 @@ namespace Modules.Main.Database.Migrations
                 name: "IX_ApplicationUserTokens_ApplicationUserId",
                 table: "ApplicationUserTokens",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_ApplicationUserId",
+                table: "User",
+                column: "ApplicationUserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "ApplicationUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers");

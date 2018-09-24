@@ -12,6 +12,9 @@ using Utilities.Logging.Extensions;
 
 namespace Utilities.Logging.Common.Filters
 {
+    /// <summary>
+    /// This class responsible for do run time logs for every request and response
+    /// </summary>
     public class ActivityLogActionFilter : IActionFilter
     {
         private static readonly ILogger Log = Serilog.Log.ForContext<ActivityLogActionFilter>();

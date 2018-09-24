@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Modules.Main.Models;
 
-namespace Modules.Main.Database.TableConfigurations
+namespace TransportTicketingNetwork.Database.TableConfigurations.USM
 {
     public class ApplicationUserTokenTableConfiguration : IEntityTypeConfiguration<ApplicationUserToken>
     {
         public void Configure(EntityTypeBuilder<ApplicationUserToken> builder)
         {
+            builder.ToTable("ApplicationUserTokens", "usm");
+
             builder.Property(au => au.TokenHash).IsRequired();
 
             builder.Property(u => u.EffectiveDateTime).HasDefaultValueSql(DatabaseConstants.CurrentUtcDateTimeValueSql);

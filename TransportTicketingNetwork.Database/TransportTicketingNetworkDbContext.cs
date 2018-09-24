@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modules.Main.Database.TableConfigurations;
 using Modules.Main.Models;
+using TransportTicketingNetwork.Database.TableConfigurations.USM;
 
-namespace Modules.Main.Database
+namespace TransportTicketingNetwork.Database
 {
-    public class MainDbContext : DbContext
+    public class TransportTicketingNetworkDbContext : DbContext
     {
         #region DbSets
 
@@ -13,16 +13,20 @@ namespace Modules.Main.Database
 
         #endregion
 
-        public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
+        public TransportTicketingNetworkDbContext(DbContextOptions<TransportTicketingNetworkDbContext> options) : base(options)
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Database Table Configuration
 
+            #region USM
+
             modelBuilder.ApplyConfiguration(new ApplicationUserTableConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserTokenTableConfiguration());
             modelBuilder.ApplyConfiguration(new UserTableConfiguration());
+
+            #endregion
 
             #endregion
 

@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Modules.Main.Database;
+using TransportTicketingNetwork.Database;
 
-namespace Modules.Main.Database.Migrations
+namespace TransportTicketingNetwork.Database.Migrations
 {
-    [DbContext(typeof(MainDbContext))]
-    [Migration("20180916134236_AddUserModel")]
-    partial class AddUserModel
+    [DbContext(typeof(TransportTicketingNetworkDbContext))]
+    partial class TransportTicketingNetworkDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +48,7 @@ namespace Modules.Main.Database.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("ApplicationUsers");
+                    b.ToTable("ApplicationUsers","usm");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.ApplicationUserToken", b =>
@@ -76,7 +74,7 @@ namespace Modules.Main.Database.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ApplicationUserTokens");
+                    b.ToTable("ApplicationUserTokens","usm");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.User", b =>
@@ -87,9 +85,15 @@ namespace Modules.Main.Database.Migrations
 
                     b.Property<int>("ApplicationUserId");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100);
+
+                    b.Property<byte>("Gender");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -104,7 +108,7 @@ namespace Modules.Main.Database.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("Users","usm");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.ApplicationUserToken", b =>
