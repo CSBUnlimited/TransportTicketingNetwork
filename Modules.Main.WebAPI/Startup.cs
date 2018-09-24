@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Modules.Main.Common.Configurations;
+using Modules.Main.Core.Services;
+using Modules.Main.Services;
 using Serilog;
 using TransportTicketingNetwork.Database;
 using Utilities.Exception.Common.Filters;
@@ -83,6 +85,9 @@ namespace Modules.Main.WebAPI
 
             // Swagger Configure Services
             services.SwaggerConfigureServices(Configuration.GetSection("Swagger")["CommentsXMLFilePath"]);
+
+            //Add Services
+            services.AddSingleton<IRouteService, RouteService>();
 
             // Add Authentication Services
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
