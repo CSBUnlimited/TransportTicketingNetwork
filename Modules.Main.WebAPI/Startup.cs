@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Modules.Main.Common.Configurations;
 using Serilog;
 using TransportTicketingNetwork.Database;
+using Utilities.Exception.Common.Filters;
 using Utilities.Logging.Common.Configurations;
 using Utilities.Logging.Common.Filters;
 
@@ -98,6 +99,7 @@ namespace Modules.Main.WebAPI
 
             services.AddMvc(options =>
             {
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
                 options.Filters.Add(typeof(ActivityLogActionFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

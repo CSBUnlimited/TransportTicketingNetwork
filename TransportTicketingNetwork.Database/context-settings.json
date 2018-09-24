@@ -1,5 +1,0 @@
-{
-  "ConnectionStrings": {
-    "Default": "Data Source=CSBUNLIMITED-PC\\CSBSQLSERVER; Integrated Security=SSPI; Initial Catalog=TransportTicketingNetwork;"
-  }
-}
