@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Modules.Main.Core.Services
 {
-    public interface IRouteService
+    public interface ISubRouteService
     {
-         Route AddRoute(Route routes);
-
-         
+        SubRoute AddSubRoute(SubRoute subroutes);
     }
 }

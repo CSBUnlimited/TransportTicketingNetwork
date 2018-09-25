@@ -86,8 +86,11 @@ namespace Modules.Main.WebAPI
             // Swagger Configure Services
             services.SwaggerConfigureServices(Configuration.GetSection("Swagger")["CommentsXMLFilePath"]);
 
-            //Add Services
+            //Add  Route Services
             services.AddSingleton<IRouteService, RouteService>();
+
+            //Add SubRoute Services
+            services.AddSingleton<ISubRouteService,SubRouteService>();
 
             // Add Authentication Services
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
