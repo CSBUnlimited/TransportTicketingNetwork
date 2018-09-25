@@ -13,7 +13,7 @@ namespace Modules.Main.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public string Duration { get; set; }
+        public string TotalDuration { get; set; }
 
         public BusStop StartBusStop { get; set; }
         public BusStop EndBusStop { get; set; }

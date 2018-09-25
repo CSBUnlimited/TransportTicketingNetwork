@@ -12,17 +12,21 @@ namespace Modules.Main.DataAccess
         public IUserRepository UserRepository { get; }
         public IApplicationUserRepository ApplicationUserRepository { get; }
 
+        public IBusRepository BusRepository { get; }
+
         #endregion
 
         public MainUnitOfWork
         (
             TransportTicketingNetworkDbContext dbContext,
             IUserRepository userRepository,
-            IApplicationUserRepository applicationUserRepository
+            IApplicationUserRepository applicationUserRepository,
+            IBusRepository busRepository
         ) : base(dbContext)
         {
             UserRepository = userRepository;
             ApplicationUserRepository = applicationUserRepository;
+            BusRepository = busRepository;
         }
     }
 }

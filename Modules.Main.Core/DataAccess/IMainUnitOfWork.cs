@@ -8,6 +8,8 @@ namespace Modules.Main.Core.DataAccess
         #region Repositories
 
         IUserRepository UserRepository { get; }
+        IBusRepository BusRepository { get; }
+
 
         #endregion
     }
