@@ -10,7 +10,8 @@ using Modules.Main.Models;
 
 namespace Modules.Main.WebAPI.Controllers
 {
-    [Route("subroute/")]
+    [Produces("application/json")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SubRouteController : Controller
     {
@@ -20,7 +21,7 @@ namespace Modules.Main.WebAPI.Controllers
 
             _services = services;
         }
-        // GET: /<controller>/
+        
         [HttpPost]
         public ActionResult<SubRoute> AddSubRoute(SubRoute subroutes)
         {

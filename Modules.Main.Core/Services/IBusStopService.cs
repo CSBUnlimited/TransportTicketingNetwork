@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Modules.Main.Core.Services
 {
-    public interface ISubRouteService
+    public interface IBusStopService
     {
-        //Method For Adding a SubRoute
-        SubRoute AddSubRoute(SubRoute subroutes);
+        //Method For Adding a BusStop
+        BusStop AddBusStop(BusStop busstops);
     }
 }

@@ -6,34 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Modules.Main.Core.Services;
 using Modules.Main.Models;
 
-
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Modules.Main.WebAPI.Controllers
 {
-
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RouteController : Controller
+    public class BusStopController : Controller
     {
-        private readonly IRouteService _services;
+        private readonly IBusStopService _services;
+        public BusStopController(IBusStopService services) {
 
-        public RouteController(IRouteService services) {
             _services = services;
         }
-        
-        //Post Request For Add Route
+
+        //Post Request For Add BusStop
         [HttpPost]
-        public ActionResult<Route> AddRoute(Route routes)
+        public ActionResult<BusStop> AddBusStop(BusStop busstops)
         {
-            var route = _services.AddRoute(routes);
-            if (route == null)
-            {
+            var busstop = _services.AddBusStop(busstops);
+            if (busstop==null) {
+
                 return NotFound();
             }
-           
-            return route;
+            return busstop;
         }
     }
 }

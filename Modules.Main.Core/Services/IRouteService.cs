@@ -6,7 +6,8 @@ using System.Text;
 namespace Modules.Main.Core.Services
 {
     public interface IRouteService
-    {
+    {    
+         //Method For Adding a Route
          Route AddRoute(Route routes);
 
          
