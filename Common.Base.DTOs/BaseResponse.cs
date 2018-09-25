@@ -23,6 +23,8 @@ namespace Common.Base.DTOs
 
         public string RequestedBy { get; set; }
         public DateTime RespondedDateTime { get; }
+        public string Message { get; set; }
+        public string MessageDetails { get; set; }
 
         public BaseResponse()
         {

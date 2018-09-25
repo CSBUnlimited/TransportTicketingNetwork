@@ -8,6 +8,10 @@ namespace Utilities.Logging.Extensions
 {
     public static class LoggingExtension
     {
+        /// <summary>
+        /// Set a exchange property
+        /// </summary>
+        /// <param name="exchange"></param>
         private static void SetExchange(string exchange)
         {
             LogContext.PushProperty("Exchange", exchange);
@@ -17,14 +21,13 @@ namespace Utilities.Logging.Extensions
         /// Extension method for log activity as information
         /// </summary>
         /// <param name="logger">Serilog's ILogger interface</param>
-        /// <param name="message">Activity message</param>
-        public static void Activity(this Serilog.ILogger logger, string message)
+        public static void Activity(this Serilog.ILogger logger)
         {
-            logger.Information("{Activity}", message);
+            logger.Information("{Activity:l}");
         }
 
         /// <summary>
-        /// Extension method for log activity as information
+        /// Extension method for log custom activity as information
         /// </summary>
         /// <param name="logger">Serilog's ILogger interface</param>
         /// <param name="message">Activity message</param>
@@ -42,21 +45,48 @@ namespace Utilities.Logging.Extensions
         }
 
         /// <summary>
-        /// Extension method for Log Exception using 
+        /// Extension method for Log Exception using Serilog's ILogger interface
+        /// Log as Error
         /// </summary>
         /// <param name="logger">Serilog's ILogger interface</param>
         /// <param name="message"></param>
-        /// <param name="ExceptionSource"></param>
-        /// <param name="ExceptionData"></param>
-        /// <param name="StackTrace"></param>
-        public static void Exception(this Serilog.ILogger logger, string message, string ExceptionSource, IDictionary ExceptionData, string StackTrace)
+        /// <param name="exceptionSource"></param>
+        /// <param name="exceptionData"></param>
+        /// <param name="stackTrace"></param>
+        public static void Exception(this Serilog.ILogger logger, string message, string exceptionSource, IDictionary exceptionData, string stackTrace)
         {
-            logger.Error("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, ExceptionSource, JsonConvert.SerializeObject(ExceptionData), StackTrace);
+            logger.Error("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, exceptionSource, JsonConvert.SerializeObject(exceptionData), stackTrace);
         }
 
-        public static void Exception(this ILogger logger, string message, string ExceptionSource, IDictionary ExceptionData, string StackTrace)
+        /// <summary>
+        /// Extension method for Log Exception using Microsoft's ILogger interface
+        /// Log as Error
+        /// </summary>
+        /// <param name="logger">Microsoft's ILogger interface</param>
+        /// <param name="message"></param>
+        /// <param name="exceptionSource"></param>
+        /// <param name="exceptionData"></param>
+        /// <param name="stackTrace"></param>
+        public static void Exception(this ILogger logger, string message, string exceptionSource, IDictionary exceptionData, string stackTrace)
         {
-            logger.LogError("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, ExceptionSource, JsonConvert.SerializeObject(ExceptionData), StackTrace);
+            logger.LogError("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, exceptionSource, JsonConvert.SerializeObject(exceptionData), stackTrace);
         }
+
+        /// <summary>
+        /// Extension method for Log Exception using Microsoft's ILogger interface
+        /// Use for known or expected exceptions
+        /// Log as Warning
+        /// </summary>
+        /// <param name="logger">Microsoft's ILogger interface</param>
+        /// <param name="message"></param>
+        /// <param name="exceptionSource"></param>
+        /// <param name="exceptionData"></param>
+        /// <param name="stackTrace"></param>
+        public static void WarningException(this ILogger logger, string message, string exceptionSource, IDictionary exceptionData, string stackTrace)
+        {
+            logger.LogWarning("{Exception:l} {Message} {ExceptionSource} {ExceptionData} {StackTrace}", true, message, exceptionSource, JsonConvert.SerializeObject(exceptionData), stackTrace);
+        }
+
+
     }
 }

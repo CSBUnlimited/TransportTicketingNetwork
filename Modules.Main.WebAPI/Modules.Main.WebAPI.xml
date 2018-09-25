@@ -21,9 +21,6 @@
             </summary>
             <param name="userRequest">FromBody - UserRequest</param>
             <returns>UserResponse</returns>
-            <response code="200">User registered</response>
-            <response code="400">Bad request by client</response>
-            <response code="500">Something went wrong from Server side</response>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
             <summary>
@@ -39,13 +36,39 @@
         <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
             <summary>
             This end point enabled automatic runtime logs
-            For every request there will two logs. One for the request and other for response
+            For every request there will two logs. One for the request and other for response.
+            This method can occur validation exceptions
             </summary>
             <param name="testLogRequest">FromBody - TestLogRequest</param>
+            <returns>TestLogResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityWithUnexpectedExceptionLogs">
+            <summary>
+            This end point will throw a NullReferenceException and it will handle by Global error handler
+            </summary>
             <returns>UserResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
-            <response code="500">Something went wrong from Server side</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityWithUnexpectedExceptionWithOuterExceptionLogs">
+            <summary>
+            This end point have a NullReferenceException which is inner exception.
+            Outer exception is an ArgumentException.
+            </summary>
+            <returns>UserResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityWithUnexpectedExceptionUsingGlobalExceptionLogs">
+            <summary>
+            This end point have a NullReferenceException it will throw as GlobalException.
+            Will handle by Global error handler
+            </summary>
+            <returns>UserResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
         </member>
         <member name="T:Modules.Main.WebAPI.Program">
             <summary>

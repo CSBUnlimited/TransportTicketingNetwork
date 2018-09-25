@@ -13,8 +13,7 @@ namespace TransportTicketingNetwork.Database
         {
             _configuration = new ConfigurationBuilder()
                 .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                .AddJsonFile("context-settings", true)
-                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile("appsettings.json")
                 .Build();
         }
 

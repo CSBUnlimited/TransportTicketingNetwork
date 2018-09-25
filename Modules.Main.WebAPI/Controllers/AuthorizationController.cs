@@ -11,6 +11,7 @@ namespace Modules.Main.WebAPI.Controllers
     /// <summary>
     /// Authorization Controller
     /// </summary>
+    [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     [EnableActivityLog]
@@ -32,13 +33,9 @@ namespace Modules.Main.WebAPI.Controllers
         /// </summary>
         /// <param name="userRequest">FromBody - UserRequest</param>
         /// <returns>UserResponse</returns>
-        /// <response code="200">User registered</response>
-        /// <response code="400">Bad request by client</response>
-        /// <response code="500">Something went wrong from Server side</response>
         [HttpPost(Name = "UserRegistrationAsync")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> UserRegistrationAsync([FromBody]UserRequest userRequest)
         {
             _logger.LogInformation("This is a test Warning message {@UserRequest}", userRequest);

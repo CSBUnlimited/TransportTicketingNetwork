@@ -2,11 +2,11 @@
 
 namespace Common.Base.DTOs
 {
-    public class BaseRequest
+    public abstract class BaseRequest
     {
         public DateTime RequestedDateTime { get; }
 
-        public BaseRequest()
+        protected BaseRequest()
         {
             RequestedDateTime = DateTime.UtcNow;
         }

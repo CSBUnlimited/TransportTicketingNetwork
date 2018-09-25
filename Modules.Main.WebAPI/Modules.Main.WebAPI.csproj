@@ -39,6 +39,7 @@
     <ProjectReference Include="..\Modules.Main.Repositories\Modules.Main.Repositories.csproj" />
     <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
     <ProjectReference Include="..\TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj" />
+    <ProjectReference Include="..\Utilities.Exception.Common.Filters\Utilities.Exception.Common.Filters.csproj" />
     <ProjectReference Include="..\Utilities.Logging.Common.Configurations\Utilities.Logging.Common.Configurations.csproj" />
     <ProjectReference Include="..\Utilities.Logging.Common.Filters\Utilities.Logging.Common.Filters.csproj" />
   </ItemGroup>

@@ -36,7 +36,7 @@ namespace Utilities.Logging.Common.Filters
                 LogContext.PushProperty($"Request|{arg.Key}", JsonConvert.SerializeObject(arg.Value));
             }
 
-            Log.Activity($"{context.HttpContext.Request.Method} Request to {context.HttpContext.Request.Path}");
+            Log.Activity();
         }
 
         /// <summary>
@@ -56,6 +56,7 @@ namespace Utilities.Logging.Common.Filters
             LogContext.PushProperty("ActivityType", context.HttpContext.Request.Method);
             LogContext.PushProperty("RequestPath", context.HttpContext.Request.Path);
 
+            // Check whether context result is null or empty or EnableActivityLog is in the controller/ method
             if (context.Result == null || context.Result.GetType().GetInterface(nameof(EmptyResult)) != null
                 || (controllerAttribute == null && actionAttribute == null))
             {
@@ -70,7 +71,7 @@ namespace Utilities.Logging.Common.Filters
                 }
                 else
                 {
-                    LogContext.PushProperty("Response|ActionResult", ((ActionResult)context.Result).ToString());
+                    LogContext.PushProperty("Response|ActionResult", JsonConvert.SerializeObject(((ObjectResult)context.Result).Value));
                 }
             }
             else if (((ObjectResult)context.Result).Value.GetType().GetInterface(nameof(IEnumerable)) != null)
@@ -88,7 +89,7 @@ namespace Utilities.Logging.Common.Filters
             }
 
             LogContext.PushProperty("StatusCode", context.HttpContext.Response.StatusCode);
-            Log.Activity($"Response from {context.HttpContext.Request.Path}");
+            Log.Activity();
 
         }
     }
