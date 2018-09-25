@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Common.Core.Repositories;
-using Modules.Main.Models;
+using Common.Models;
 
 namespace Modules.Main.Core.Repositories
 {

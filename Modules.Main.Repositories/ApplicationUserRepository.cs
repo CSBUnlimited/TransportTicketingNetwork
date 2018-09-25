@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Common.Base.Repositories;
+using Common.Models;
 using Microsoft.EntityFrameworkCore;
 using Modules.Main.Core.Repositories;
-using Modules.Main.Models;
 using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.Repositories

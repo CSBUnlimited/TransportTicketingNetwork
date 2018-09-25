@@ -27,6 +27,15 @@ namespace Utilities.Logging.Extensions
         }
 
         /// <summary>
+        /// Extension method for log activity as information
+        /// </summary>
+        /// <param name="logger">ILogger interface</param>
+        public static void Activity(ILogger logger)
+        {
+            logger.LogInformation("{Activity:l}");
+        }
+
+        /// <summary>
         /// Extension method for log custom activity as information
         /// </summary>
         /// <param name="logger">Serilog's ILogger interface</param>

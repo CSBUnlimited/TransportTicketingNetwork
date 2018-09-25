@@ -131,15 +131,13 @@ namespace Modules.Main.WebAPI
             app.UseSwaggerConfigure();
 
             // Database Initialization 
-            //DbContextOptionsBuilder<TransportTicketingNetworkDbContext> optionsBuilder = new DbContextOptionsBuilder<TransportTicketingNetworkDbContext>();
-            //optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
+            DbContextOptionsBuilder<TransportTicketingNetworkDbContext> optionsBuilder = new DbContextOptionsBuilder<TransportTicketingNetworkDbContext>();
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
 
-            //using (TransportTicketingNetworkDbContext context = new TransportTicketingNetworkDbContext(optionsBuilder.Options))
-            //{
-            //    Console.WriteLine("Database Migration started...");
-            //    //context.InitializeDatabase();
-            //    Console.WriteLine("Database Migrated and Seeded...");
-            //}
+            using (TransportTicketingNetworkDbContext context = new TransportTicketingNetworkDbContext(optionsBuilder.Options))
+            {
+                context.InitializeDatabase();
+            }
         }
     }
 }

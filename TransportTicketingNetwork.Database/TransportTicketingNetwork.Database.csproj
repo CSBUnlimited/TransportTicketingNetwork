@@ -22,7 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Configurations.Constants\Common.Configurations.Constants.csproj" />
+    <ProjectReference Include="..\Common.Methods\Common.Methods.csproj" />
+    <ProjectReference Include="..\Common.Models\Common.Models.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
+    <ProjectReference Include="..\Utilities.Logging.Extensions\Utilities.Logging.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

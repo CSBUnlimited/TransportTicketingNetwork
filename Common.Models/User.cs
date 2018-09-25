@@ -1,4 +1,4 @@
-﻿namespace Modules.Main.Models
+﻿namespace Common.Models
 {
     public class User
     {

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Modules.Main.Models
+namespace Common.Models
 {
     public class ApplicationUserToken
     {
