@@ -1,11 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
     <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
     <ProjectReference Include="..\TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Core\Utilities.Authorization.Core.csproj" />

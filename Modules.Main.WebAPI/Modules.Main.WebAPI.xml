@@ -4,30 +4,12 @@
         <name>Modules.Main.WebAPI</name>
     </assembly>
     <members>
-        <member name="T:Modules.Main.WebAPI.Controllers.AuthorizationController">
-            <summary>
-            Authorization Controller
-            </summary>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="logger">Logger injection</param>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.UserRegistrationAsync(Modules.Main.DTOs.User.UserRequest)">
-            <summary>
-            User Registration - Async
-            </summary>
-            <param name="userRequest">FromBody - UserRequest</param>
-            <returns>UserResponse</returns>
-        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
             <summary>
             Log Testings Controller - Purpose is to test logs are working correctly
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController})">
             <summary>
             Constructor
             </summary>
@@ -69,6 +51,32 @@
             <returns>UserResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
+        </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.UsersController">
+            <summary>
+            Users Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController},Modules.Main.Core.Services.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="userService">User Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
+            <summary>
+            Login UserAsync - Async
+            </summary>
+            <param name="loginRequest">FromBody - UserRequest</param>
+            <returns>LoginResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.UserRegistrationAsync(Modules.Main.DTOs.User.UserRequest)">
+            <summary>
+            User Registration - Async
+            </summary>
+            <param name="userRequest">FromBody - UserRequest</param>
+            <returns>UserResponse</returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Program">
             <summary>

@@ -1,5 +1,4 @@
-﻿using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +12,7 @@ using Modules.Main.Common.Configurations;
 using Modules.Main.Core.Services;
 using Modules.Main.Services;
 using Serilog;
+using System.Text;
 using TransportTicketingNetwork.Database;
 using Utilities.Exception.Common.Filters;
 using Utilities.Logging.Common.Configurations;

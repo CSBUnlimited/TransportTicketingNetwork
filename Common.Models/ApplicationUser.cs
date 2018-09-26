@@ -11,6 +11,7 @@ namespace Common.Models
         public byte[] PasswordSalt { get; set; }
         public DateTime EffectiveDateTime { get; set; }
         public DateTime ExpireDateTime { get; set; }
+        public bool IsBlocked { get; set; }
 
         public User User { get; set; }
 

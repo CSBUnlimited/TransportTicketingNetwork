@@ -11,7 +11,7 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.USM
         {
             builder.ToTable("ApplicationUserTokens", "usm");
 
-            builder.Property(au => au.TokenHash).IsRequired();
+            builder.Property(au => au.SessionHash).IsRequired();
 
             builder.Property(u => u.EffectiveDateTime).HasDefaultValueSql(DatabaseConstants.CurrentUtcDateTimeValueSql);
 

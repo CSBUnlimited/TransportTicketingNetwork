@@ -21,13 +21,13 @@ namespace Modules.Main.WebAPI.Controllers
     public class LogTestingsController : ControllerBase
     {
         // ReSharper disable once NotAccessedField.Local
-        private readonly ILogger<AuthorizationController> _logger;
+        private readonly ILogger<UsersController> _logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">Logger injection</param>
-        public LogTestingsController(ILogger<AuthorizationController> logger)
+        public LogTestingsController(ILogger<UsersController> logger)
         {
             _logger = logger;
         }
