@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Modules.Main.Core.DataAccess;
 using Modules.Main.Core.Repositories;
 using Modules.Main.Core.Services;
 using Modules.Main.DataAccess;
 using Modules.Main.Repositories;
 using Modules.Main.Services;
+using Utilities.Authorization.Configurations;
 
 namespace Modules.Main.Common.Configurations
 {
@@ -20,14 +20,15 @@ namespace Modules.Main.Common.Configurations
         {
             #region Other - Dependancies
 
-            // To get authentication token info
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.RegisterAuthorizationDependencies();
 
             #endregion
 
             #region Repository - Dependencies
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IBusRepository, BusRepository>();
 
             #endregion
 

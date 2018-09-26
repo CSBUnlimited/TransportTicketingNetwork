@@ -10,11 +10,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Base.Services\Common.Base.Services.csproj" />
-    <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
-    <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
-    <ProjectReference Include="..\Modules.Main.ViewModels\Modules.Main.ViewModels.csproj" />
+    <ProjectReference Include="..\Common.Methods\Common.Methods.csproj" />
+    <ProjectReference Include="..\Common.Models\Common.Models.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Core\Utilities.Authorization.Core.csproj" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.100" />
+    <ProjectReference Include="..\Utilities.Authorization.Models\Utilities.Authorization.Models.csproj" />
   </ItemGroup>
 
 </Project>
