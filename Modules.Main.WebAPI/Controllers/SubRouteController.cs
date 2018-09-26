@@ -6,34 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Modules.Main.Core.Services;
 using Modules.Main.Models;
 
-
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Modules.Main.WebAPI.Controllers
 {
-
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RouteController : Controller
+    public class SubRouteController : Controller
     {
-        private readonly IRouteService _services;
+        private readonly ISubRouteService _services;
 
-        public RouteController(IRouteService services) {
+        public SubRouteController(ISubRouteService services) {
+
             _services = services;
         }
         
-        //Post Request For Add Route
         [HttpPost]
-        public ActionResult<Route> AddRoute(Route routes)
+        public ActionResult<SubRoute> AddSubRoute(SubRoute subroutes)
         {
-            var route = _services.AddRoute(routes);
-            if (route == null)
-            {
+            var subroute = _services.AddSubRoute(subroutes);
+            if (subroute==null) {
                 return NotFound();
             }
-           
-            return route;
+            
+            return subroute;
         }
     }
 }

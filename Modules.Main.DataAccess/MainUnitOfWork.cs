@@ -14,6 +14,8 @@ namespace Modules.Main.DataAccess
 
         public IBusRepository BusRepository { get; }
 
+        public IJourneyRepository JourneyRepository { get; }
+
         #endregion
 
         public MainUnitOfWork
@@ -21,12 +23,15 @@ namespace Modules.Main.DataAccess
             TransportTicketingNetworkDbContext dbContext,
             IUserRepository userRepository,
             IApplicationUserRepository applicationUserRepository,
-            IBusRepository busRepository
+            IBusRepository busRepository,
+            IJourneyRepository journeyRepository
+            
         ) : base(dbContext)
         {
             UserRepository = userRepository;
             ApplicationUserRepository = applicationUserRepository;
             BusRepository = busRepository;
+            JourneyRepository = journeyRepository;
         }
     }
 }

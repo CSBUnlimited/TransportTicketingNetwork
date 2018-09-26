@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Modules.Main.Core.Services
 {
-    public interface IRouteService
-    {    
-         //Method For Adding a Route
-         Route AddRoute(Route routes);
-
-         
+    public interface IBusStopService
+    {
+        //Method For Adding a BusStop
+        BusStop AddBusStop(BusStop busstops);
     }
 }
