@@ -1,9 +1,11 @@
 ﻿using Common.Base.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Modules.Main.Core.Repositories;
+using Modules.Main.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.Repositories
@@ -19,8 +21,13 @@ namespace Modules.Main.Repositories
         public BusRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
         {
             DbContext = dbContext;
-    
         }
+        public async Task<IEnumerable<Bus>> GetBusList()
+        {
+            return await DbContext.Buses.ToListAsync();
+        }
+
+
 
     }
 }

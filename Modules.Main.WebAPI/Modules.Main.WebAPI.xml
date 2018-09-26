@@ -4,6 +4,27 @@
         <name>Modules.Main.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:Modules.Main.WebAPI.Controllers.BusController">
+            <summary>
+            Buses Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.BusController},Modules.Main.Core.Services.IBusService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="busService">Bus Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.GetBusList">
+            <summary>
+            This end point have a NullReferenceException which is inner exception.
+            Outer exception is an ArgumentException.
+            </summary>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
             <summary>
             Log Testings Controller - Purpose is to test logs are working correctly

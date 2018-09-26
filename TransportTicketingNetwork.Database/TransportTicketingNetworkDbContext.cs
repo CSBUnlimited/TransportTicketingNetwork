@@ -1,5 +1,6 @@
 ﻿using Common.Models;
 using Microsoft.EntityFrameworkCore;
+using Modules.Main.Models;
 using TransportTicketingNetwork.Database.TableConfigurations.USM;
 
 namespace TransportTicketingNetwork.Database
@@ -11,6 +12,7 @@ namespace TransportTicketingNetwork.Database
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationUserToken> ApplicationUserTokens { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Bus> Buses { get; set; }
 
         #endregion
 
