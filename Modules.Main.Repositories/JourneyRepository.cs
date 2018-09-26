@@ -4,6 +4,8 @@ using System.Text;
 using Modules.Main.Core.Repositories;
 using TransportTicketingNetwork.Database;
 using Common.Base.Repositories;
+using Modules.Main.Models;
+using System.Threading.Tasks;
 
 namespace Modules.Main.Repositories
 {
@@ -14,6 +16,11 @@ namespace Modules.Main.Repositories
         {
             DbContext = dbContext;
 
+        }
+
+        public Task GetLocations(Journey journey)
+        {
+            throw new NotImplementedException();
         }
     }
 }
