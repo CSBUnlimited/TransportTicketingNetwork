@@ -16,10 +16,6 @@ namespace Modules.Main.Common.Configurations
         {
             CreateMap<Route, RouteViewModel>();
             CreateMap<Bus, BusViewModel>();
-
-
-
-
         }
 
         private void CreateMapViewModelsToModels()
