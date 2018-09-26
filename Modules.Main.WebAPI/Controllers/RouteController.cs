@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Modules.Main.Core.Services;
+using Modules.Main.DTOs.Route;
 using Modules.Main.Models;
+using Modules.Main.ViewModels;
+using Utilities.Exception.Models;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,15 +28,27 @@ namespace Modules.Main.WebAPI.Controllers
         
         //Post Request For Add Route
         [HttpPost]
-        public ActionResult<Route> AddRoute(Route routes)
+        public async Task<IActionResult> AddRoute(RouteRequest routeRequest)
         {
-            var route = _services.AddRoute(routes);
-            if (route == null)
+            RouteResponse response = new RouteResponse();
+            
+
+            try
             {
-                return NotFound();
+                response.RouteViewModels = new List<RouteViewModel>()
+                {
+                    await _services.AddRoute(routeRequest.RouteViewModel)
+                };
+
+                response.IsSuccess = true;
             }
-           
-            return route;
+            catch (Exception ex)
+            {
+
+                throw new GlobalException(ex, response);
+            }
+
+            return StatusCode(response.Status,response);
         }
     }
 }

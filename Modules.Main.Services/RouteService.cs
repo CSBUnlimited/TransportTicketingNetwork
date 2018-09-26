@@ -1,22 +1,35 @@
-﻿using Modules.Main.Core.Services;
+﻿using AutoMapper;
+using Common.Base.Services;
+using Modules.Main.Core.DataAccess;
+using Modules.Main.Core.Services;
 using Modules.Main.Models;
+using Modules.Main.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Modules.Main.Services
 {
-    public class RouteService : IRouteService
+    public class RouteService : BaseService, IRouteService
     {
-        private IRouteService _routeServices;
+        private IMainUnitOfWork _mainUnitOfWork;
+        private IMapper _mapper;
 
-        public RouteService(IRouteService routeServices) {
+        public RouteService(IMainUnitOfWork mainUnitOfWork, IMapper mapper) {
+            _mainUnitOfWork = mainUnitOfWork;
 
-            _routeServices = routeServices;
+
         }
         //Overide The AddRoute Method
-        public Route AddRoute(Route routes) {
-            throw new System.NotImplementedException();
+        public async Task<RouteViewModel> AddRoute(RouteViewModel routes)
+        {
+            Route route = _mapper.Map<Route>(routes);
+
+            await _mainUnitOfWork.RouteRepository.AddRoutes(route);
+
+            return _mapper.Map<RouteViewModel>(route);
         }
+        
     }
 }

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Modules.Main.Models;
+using Modules.Main.ViewModels;
 
 namespace Modules.Main.Common.Configurations
 {
@@ -12,12 +14,12 @@ namespace Modules.Main.Common.Configurations
 
         private void CreateMapsModelsToViewModels()
         {
-            
+            CreateMap<Route, RouteViewModel>();
         }
 
         private void CreateMapViewModelsToModels()
         {
-            
+            CreateMap<RouteViewModel, Route>();
         }
     }
 }
