@@ -25,6 +25,12 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
+            <summary>
+            This is for get the journey locations
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
             <summary>
             Log Testings Controller - Purpose is to test logs are working correctly
