@@ -16,6 +16,8 @@ namespace Modules.Main.DataAccess
 
         public IJourneyRepository JourneyRepository { get; }
 
+        public IRouteRepository RouteRepository { get; }
+
         #endregion
 
         public MainUnitOfWork
@@ -24,7 +26,10 @@ namespace Modules.Main.DataAccess
             IUserRepository userRepository,
             IApplicationUserRepository applicationUserRepository,
             IBusRepository busRepository,
-            IJourneyRepository journeyRepository
+            IJourneyRepository journeyRepository,
+            IRouteRepository routeRepository
+
+
             
         ) : base(dbContext)
         {
@@ -32,6 +37,7 @@ namespace Modules.Main.DataAccess
             ApplicationUserRepository = applicationUserRepository;
             BusRepository = busRepository;
             JourneyRepository = journeyRepository;
+            RouteRepository = routeRepository;
         }
     }
 }

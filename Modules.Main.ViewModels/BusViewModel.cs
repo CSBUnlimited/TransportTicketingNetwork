@@ -1,24 +1,20 @@
-﻿using System;
+﻿using Common.Base.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Modules.Main.Models
+namespace Modules.Main.ViewModels
 {
-    public class Bus
+    public class BusViewModel : BaseViewModel
     {
-        public int Id { get; set; }
-
         public string BusName { get; set; }
 
-        public string BusNumber{ get; set; }
+        public string BusNumber { get; set; }
 
         public string BusType { get; set; }
 
         public int NoSeats { get; set; }
 
         public string Description { get; set; }
-
     }
-
-
 }
