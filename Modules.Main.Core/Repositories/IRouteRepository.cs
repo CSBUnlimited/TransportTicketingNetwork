@@ -1,6 +1,5 @@
 ﻿using Common.Core.Repositories;
 using Modules.Main.Models;
-using Modules.Main.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Modules.Main.Core.Repositories
 {
-    public interface IJourneyRepository : IRepository
+    public interface IRouteRepository : IRepository
     {
-        Task GetLocations(Journey journey);
+        Task AddRoutes(Route route);
+
+        Task<IEnumerable<Route>> GetRouteList();
+
     }
+
 }

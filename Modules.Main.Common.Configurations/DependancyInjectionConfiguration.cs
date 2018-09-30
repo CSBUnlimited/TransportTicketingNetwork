@@ -30,6 +30,8 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IBusRepository, BusRepository>();
             services.AddScoped<IJourneyRepository, JourneyRepository>();
+            services.AddScoped<IBusScheduleRepository, BusScheduleRepository>();
+            services.AddScoped<IRouteRepository, RouteRepository>();
 
             #endregion
 
@@ -45,6 +47,9 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IJourneyService, JourneyService>();
             services.AddScoped<IRouteService, RouteService>();
             services.AddScoped<ISubRouteService, SubRouteService>();
+            services.AddScoped<IBusStopService, BusStopService>();
+            services.AddScoped<IBusService, BusService>();
+            services.AddScoped<IBusStopService, BusStopService>();
 
             #endregion
 

@@ -10,7 +10,7 @@ using TransportTicketingNetwork.Database;
 
 namespace Modules.Main.Repositories
 {
-    public class BusRepository : BaseRepository, IBusRepository
+    public class BusScheduleRepository : BaseRepository, IBusScheduleRepository
     {
         protected new TransportTicketingNetworkDbContext DbContext { get; }
 
@@ -18,18 +18,16 @@ namespace Modules.Main.Repositories
         /// Constructor
         /// </summary>
         /// <param name="dbContext">TransportTicketingNetworkDbContext</param>
-        public BusRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
+        /// 
+
+        public BusScheduleRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
         {
             DbContext = dbContext;
         }
-        public async Task<IEnumerable<Bus>> GetBusList()
-        {
-            return await DbContext.Buses.ToListAsync();
-        }
 
-        public async Task AddBus(Bus bus)
+        public async Task<IEnumerable<BusSchedule>> GetBusScheduleList()
         {
-            await DbContext.AddAsync(bus);
+            return await DbContext.BusSchedules.ToListAsync();
         }
 
 
