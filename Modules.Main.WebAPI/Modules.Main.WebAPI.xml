@@ -86,6 +86,33 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.RouteController">
+            <summary>
+            Route Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.RouteController},Modules.Main.Core.Services.IRouteService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="routeService">Route Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.AddRoute(Modules.Main.DTOs.Route.RouteRequest)">
+            <summary>
+            Route Async
+            </summary>
+            <param name="routeRequest">FromBody-RouteRequest</param>
+            <returns>RouteResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.GetRouteList">
+            <summary>
+            Getting Route
+            </summary>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.UsersController">
             <summary>
             Users Controller

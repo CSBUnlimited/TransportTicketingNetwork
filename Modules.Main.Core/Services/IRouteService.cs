@@ -13,6 +13,8 @@ namespace Modules.Main.Core.Services
         //Method For Adding a Route
         Task<RouteViewModel> AddRoute(RouteViewModel routes);
 
-         
+        Task<IEnumerable<RouteViewModel>> GetRouteListAsync();
+
+
     }
 }

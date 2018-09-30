@@ -8,7 +8,6 @@
         public string Mobile { get; set; }
         public string Email { get; set; }
         public Gender Gender { get; set; }
-
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }

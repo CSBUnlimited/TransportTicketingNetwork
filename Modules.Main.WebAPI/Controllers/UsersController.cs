@@ -22,6 +22,7 @@ namespace Modules.Main.WebAPI.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     [EnableActivityLog]
+
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;

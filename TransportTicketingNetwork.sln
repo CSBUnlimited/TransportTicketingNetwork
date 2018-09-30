@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0100 Common", "0100 Common", "{3A1A9B29-9699-4A6F-9DED-8070FD49747C}"
 EndProject
@@ -83,25 +83,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Logging.Extension
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0200 Database", "0200 Database", "{1BE2072C-1B8B-405F-B4E8-624D450B40D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportTicketingNetwork.Database", "TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj", "{2875FED4-3E48-4E02-90E7-D68118A67F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportTicketingNetwork.Database", "TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj", "{2875FED4-3E48-4E02-90E7-D68118A67F3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0304_01 Common", "0304_01 Common", "{267155D4-472D-4BA2-8424-9EE5B19F8919}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0304_03 Business", "0304_03 Business", "{13975006-64BF-4ACC-9DD1-9EC2597D1BE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Exception.Models", "Utilities.Exception.Models\Utilities.Exception.Models.csproj", "{5465CE06-5F42-4072-A10F-A68FB3BADA0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Exception.Models", "Utilities.Exception.Models\Utilities.Exception.Models.csproj", "{5465CE06-5F42-4072-A10F-A68FB3BADA0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Exception.Common.Filters", "Utilities.Exception.Common.Filters\Utilities.Exception.Common.Filters.csproj", "{5CC0E87C-35CC-4F2F-A703-21F0194BE000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Exception.Common.Filters", "Utilities.Exception.Common.Filters\Utilities.Exception.Common.Filters.csproj", "{5CC0E87C-35CC-4F2F-A703-21F0194BE000}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0306 AuthorizationManagement", "0306 AuthorizationManagement", "{C27AB5FA-ABB5-43B5-B29F-76A6128D8DE1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Methods", "Methods", "{8A8ABC31-800F-4C40-850A-7F45044C599D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Methods", "Common.Methods\Common.Methods.csproj", "{72CBCA71-F4E0-44B4-B60A-0E6036DBAB4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Methods", "Common.Methods\Common.Methods.csproj", "{72CBCA71-F4E0-44B4-B60A-0E6036DBAB4D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{01AC09F6-8082-4BAA-87E9-EEEA42CB19A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Models", "Common.Models\Common.Models.csproj", "{CC7939CA-6B15-42FB-A7EC-708C36487341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Models", "Common.Models\Common.Models.csproj", "{CC7939CA-6B15-42FB-A7EC-708C36487341}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0306_01 Common", "0306_01 Common", "{B27699B8-F8EF-4A70-8451-E60C9E854675}"
 EndProject
@@ -109,17 +109,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0306_03 Business", "0306_03
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0306_04 Infrastructure", "0306_04 Infrastructure", "{EA9D483C-AD8A-480F-BDB5-B172292F26ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.Core", "Utilities.Authorization.Core\Utilities.Authorization.Core.csproj", "{B88263ED-862E-49E5-9241-4746C4CB699B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.Core", "Utilities.Authorization.Core\Utilities.Authorization.Core.csproj", "{B88263ED-862E-49E5-9241-4746C4CB699B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.Services", "Utilities.Authorization.Services\Utilities.Authorization.Services.csproj", "{72CB4A31-70E6-49AD-AEA0-117267C4BA9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.Services", "Utilities.Authorization.Services\Utilities.Authorization.Services.csproj", "{72CB4A31-70E6-49AD-AEA0-117267C4BA9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.Models", "Utilities.Authorization.Models\Utilities.Authorization.Models.csproj", "{12A41407-77ED-4FF2-9FFF-AF75B09C23B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.Models", "Utilities.Authorization.Models\Utilities.Authorization.Models.csproj", "{12A41407-77ED-4FF2-9FFF-AF75B09C23B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.DataAccess", "Utilities.Authorization.DataAccess\Utilities.Authorization.DataAccess.csproj", "{C6248463-95BD-420D-9875-493DDD469463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.DataAccess", "Utilities.Authorization.DataAccess\Utilities.Authorization.DataAccess.csproj", "{C6248463-95BD-420D-9875-493DDD469463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.Repositories", "Utilities.Authorization.Repositories\Utilities.Authorization.Repositories.csproj", "{72B3559F-F225-40B7-A90A-B2C67FAE8ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.Repositories", "Utilities.Authorization.Repositories\Utilities.Authorization.Repositories.csproj", "{72B3559F-F225-40B7-A90A-B2C67FAE8ABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Authorization.Configurations", "Utilities.Authorization.Configurations\Utilities.Authorization.Configurations.csproj", "{D524DB06-F71C-418A-8DC8-73797E071540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Authorization.Configurations", "Utilities.Authorization.Configurations\Utilities.Authorization.Configurations.csproj", "{D524DB06-F71C-418A-8DC8-73797E071540}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

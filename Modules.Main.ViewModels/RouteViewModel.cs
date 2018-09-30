@@ -11,6 +11,8 @@ namespace Modules.Main.ViewModels
 
         public int Distance { get; set; }
 
+        public int RouteNumber { get; set; }
+
         public string Description { get; set; }
 
         public string StartBusStopId { get; set; }
