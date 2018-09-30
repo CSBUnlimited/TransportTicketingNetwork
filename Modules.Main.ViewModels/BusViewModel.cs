@@ -16,5 +16,8 @@ namespace Modules.Main.ViewModels
         public int NoSeats { get; set; }
 
         public string Description { get; set; }
+
+        //Assigning the Route when adding a Bus to the System - Sub RouteID
+        public string SubRouteId { get; set; }
     }
 }

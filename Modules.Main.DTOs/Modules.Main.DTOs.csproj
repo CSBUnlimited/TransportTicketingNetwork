@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Modules.Main.ViewModels\Modules.Main.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BusSchedule\" />
+  </ItemGroup>
+
 </Project>

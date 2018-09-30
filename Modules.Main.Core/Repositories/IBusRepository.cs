@@ -13,6 +13,14 @@ namespace Modules.Main.Core.Repositories
         /// Get Bus List
         /// </summary>
         /// <returns>Bus List or null, if not found</returns>
+
         Task<IEnumerable<Bus>> GetBusList();
+
+        /// <summary>
+        /// Add Bus
+        /// </summary>
+        /// <returns></returns>
+        Task AddBus(Bus bus);
+
     }
 }

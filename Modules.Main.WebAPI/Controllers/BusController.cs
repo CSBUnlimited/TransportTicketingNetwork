@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Modules.Main.Core.Services;
 using Modules.Main.DTOs.Bus;
+using Modules.Main.ViewModels;
+using Utilities.Exception.Models;
 using Utilities.Logging.Common.Attributes;
 
 namespace Modules.Main.WebAPI.Controllers
@@ -60,6 +62,38 @@ namespace Modules.Main.WebAPI.Controllers
             {
                 // This line will throw a ArgumentException
                 throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
+
+            return StatusCode(response.Status, response);
+        }
+
+
+        /// <summary>
+        /// Login UserAsync - Async
+        /// </summary>
+        /// <param name="busRequest">FromBody - UserRequest</param>
+        /// <returns>BusResponse</returns>
+        [HttpPost(Name = "AddBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddBus([FromBody]BusRequest busRequest)
+        {
+            BusResponse response = new BusResponse();
+
+            try
+            {
+
+                response.BusViewModels = new List<BusViewModel>();
+
+                {
+                    await _busService.AddBusAsync(busRequest.BusViewModel);
+                };
+
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw new GlobalException(ex, response);
             }
 
             return StatusCode(response.Status, response);

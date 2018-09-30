@@ -14,6 +14,8 @@ namespace Modules.Main.DataAccess
 
         public IBusRepository BusRepository { get; }
 
+        public IBusScheduleRepository BusScheduleRepository { get; }
+
         public IJourneyRepository JourneyRepository { get; }
 
         public IRouteRepository RouteRepository { get; }
@@ -26,6 +28,7 @@ namespace Modules.Main.DataAccess
             IUserRepository userRepository,
             IApplicationUserRepository applicationUserRepository,
             IBusRepository busRepository,
+            IBusScheduleRepository busScheduleRepository,
             IJourneyRepository journeyRepository,
             IRouteRepository routeRepository
 
@@ -36,6 +39,7 @@ namespace Modules.Main.DataAccess
             UserRepository = userRepository;
             ApplicationUserRepository = applicationUserRepository;
             BusRepository = busRepository;
+            BusScheduleRepository = busScheduleRepository;
             JourneyRepository = journeyRepository;
             RouteRepository = routeRepository;
         }

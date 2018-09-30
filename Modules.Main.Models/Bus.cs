@@ -18,6 +18,11 @@ namespace Modules.Main.Models
 
         public string Description { get; set; }
 
+        //Assigning the Route when adding a Bus to the System - Sub RouteID/Object
+        public string SubRouteId { get; set; }
+        public SubRoute SubRoute { get; set; }
+
+
     }
 
 

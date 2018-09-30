@@ -25,6 +25,13 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.AddBus(Modules.Main.DTOs.Bus.BusRequest)">
+            <summary>
+            Login UserAsync - Async
+            </summary>
+            <param name="busRequest">FromBody - UserRequest</param>
+            <returns>BusResponse</returns>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
             <summary>
             This is for get the journey locations
