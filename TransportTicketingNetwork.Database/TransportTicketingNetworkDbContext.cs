@@ -13,7 +13,6 @@ namespace TransportTicketingNetwork.Database
         public DbSet<ApplicationUserToken> ApplicationUserTokens { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Bus> Buses { get; set; }
-
         public DbSet<Route> Routes { get; set; }
 
         #endregion

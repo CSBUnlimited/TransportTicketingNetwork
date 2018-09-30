@@ -8,7 +8,7 @@ namespace Modules.Main.Models
     {
         public int Id { get; set; }
 
-        public int RootNumber { get; set; }
+        public int RouteNumber { get; set; }
 
         public int Distance { get; set; }
 
