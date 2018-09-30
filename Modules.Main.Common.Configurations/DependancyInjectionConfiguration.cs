@@ -46,7 +46,6 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJourneyService, JourneyService>();
             services.AddScoped<IRouteService, RouteService>();
-            services.AddScoped<ISubRouteService, SubRouteService>();
             services.AddScoped<IBusStopService, BusStopService>();
             services.AddScoped<IBusService, BusService>();
             services.AddScoped<IBusStopService, BusStopService>();
