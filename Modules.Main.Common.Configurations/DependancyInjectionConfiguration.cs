@@ -29,6 +29,7 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IBusRepository, BusRepository>();
+            services.AddScoped<IJourneyRepository, JourneyRepository>();
 
             #endregion
 
@@ -41,6 +42,9 @@ namespace Modules.Main.Common.Configurations
             #region Service - Dependencies
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJourneyService, JourneyService>();
+            services.AddScoped<IRouteService, RouteService>();
+            services.AddScoped<ISubRouteService, SubRouteService>();
 
             #endregion
 

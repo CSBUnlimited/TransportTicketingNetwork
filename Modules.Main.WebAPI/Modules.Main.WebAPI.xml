@@ -4,12 +4,43 @@
         <name>Modules.Main.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:Modules.Main.WebAPI.Controllers.AuthorizationController">
+            <summary>
+            Users Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController},Modules.Main.Core.Services.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="userService">User Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
+            <summary>
+            Login User - Async
+            </summary>
+            <param name="loginRequest">FromBody - UserRequest</param>
+            <returns>LoginResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.LogoutUserAsync">
+            <summary>
+            Logout User - Async
+            </summary>
+            <returns>LoginResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.RenewAuthenticationTokenAsync">
+            <summary>
+            Renew Authentication Token - Async
+            </summary>
+            <returns>LoginResponse</returns>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
             <summary>
             Log Testings Controller - Purpose is to test logs are working correctly
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController})">
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
             <summary>
             Constructor
             </summary>
@@ -18,6 +49,17 @@
         <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
             <summary>
             This end point enabled automatic runtime logs
+            For every request there will two logs. One for the request and other for response.
+            This method can occur validation exceptions
+            </summary>
+            <param name="testLogRequest">FromBody - TestLogRequest</param>
+            <returns>TestLogResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.DisabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
+            <summary>
+            This end point disabled automatic runtime logs
             For every request there will two logs. One for the request and other for response.
             This method can occur validation exceptions
             </summary>
@@ -51,32 +93,6 @@
             <returns>UserResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
-        </member>
-        <member name="T:Modules.Main.WebAPI.Controllers.UsersController">
-            <summary>
-            Users Controller
-            </summary>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController},Modules.Main.Core.Services.IUserService)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="logger">Logger injection</param>
-            <param name="userService">User Service</param>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
-            <summary>
-            Login UserAsync - Async
-            </summary>
-            <param name="loginRequest">FromBody - UserRequest</param>
-            <returns>LoginResponse</returns>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.UserRegistrationAsync(Modules.Main.DTOs.User.UserRequest)">
-            <summary>
-            User Registration - Async
-            </summary>
-            <param name="userRequest">FromBody - UserRequest</param>
-            <returns>UserResponse</returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Program">
             <summary>

@@ -12,5 +12,17 @@ namespace Modules.Main.Core.Services
         /// <param name="loginViewModel">LoginViewModel</param>
         /// <returns>Authentication Token</returns>
         Task<string> UserLoginAsync(LoginViewModel loginViewModel);
+
+        /// <summary>
+        /// Renew Authentication Token - Async
+        /// </summary>
+        /// <returns>New Token</returns>
+        Task<string> RenewAuthenticationTokenAsync();
+
+        /// <summary>
+        /// User logout - Async
+        /// </summary>
+        /// <returns></returns>
+        Task UserLogoutAsync();
     }
 }

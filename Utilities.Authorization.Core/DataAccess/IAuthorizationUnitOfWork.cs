@@ -5,6 +5,8 @@ namespace Utilities.Authorization.Core.DataAccess
 {
     public interface IAuthorizationUnitOfWork : IUnitOfWork
     {
-        IAuthorizationRepository AuthorizationRepository { get; }
+        IUserRepository UserRepository{ get; }
+        IApplicationUserRepository ApplicationUserRepository{ get; }
+        IApplicationUserTokenRepository ApplicationUserTokenRepository { get; }
     }
 }

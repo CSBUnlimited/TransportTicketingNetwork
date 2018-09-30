@@ -9,17 +9,23 @@ namespace Utilities.Authorization.DataAccess
     {
         #region Repositories
 
-        public IAuthorizationRepository AuthorizationRepository { get; }
+        public IUserRepository UserRepository { get; }
+        public IApplicationUserRepository ApplicationUserRepository { get; }
+        public IApplicationUserTokenRepository ApplicationUserTokenRepository { get; }
 
         #endregion
 
         public AuthorizationUnitOfWork
         (
             TransportTicketingNetworkDbContext dbContext,
-            IAuthorizationRepository authorizationRepository
+            IUserRepository userRepository,
+            IApplicationUserRepository applicationUserRepository,
+            IApplicationUserTokenRepository applicationUserTokenRepository
         ) : base(dbContext)
         {
-            AuthorizationRepository = authorizationRepository;
+            UserRepository = userRepository;
+            ApplicationUserRepository = applicationUserRepository;
+            ApplicationUserTokenRepository = applicationUserTokenRepository;
         }
     }
 }

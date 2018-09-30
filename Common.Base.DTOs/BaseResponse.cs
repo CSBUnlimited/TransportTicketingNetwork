@@ -21,7 +21,7 @@ namespace Common.Base.DTOs
             set => _status = value;
         }
 
-        public string RequestedBy { get; set; }
+        public string RequestedUsername { get; set; }
         public DateTime RespondedDateTime { get; }
         public string Message { get; set; }
         public string MessageDetails { get; set; }
