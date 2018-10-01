@@ -34,8 +34,8 @@ namespace Common.Methods
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, username),
-                    new Claim(ClaimTypes.Name, sessionHash),
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.NameIdentifier, sessionHash),
                     new Claim(TokenClaimTypes.FirstName, user.FirstName),
                     new Claim(TokenClaimTypes.LastName, user.LastName),
                     new Claim(TokenClaimTypes.Gender, user.Gender == Gender.Male ? "Male" : "Female"),

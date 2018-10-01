@@ -41,6 +41,8 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired();
 
+                    b.Property<byte>("UserType");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(20);
@@ -75,6 +77,8 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("SessionHash");
 
                     b.ToTable("ApplicationUserTokens","usm");
                 });
@@ -113,6 +117,122 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.ToTable("Users","usm");
                 });
 
+            modelBuilder.Entity("Modules.Main.Models.Bus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BusName");
+
+                    b.Property<string>("BusNumber");
+
+                    b.Property<int?>("BusScheduleId");
+
+                    b.Property<string>("BusType");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("NoSeats");
+
+                    b.Property<string>("SubRouteId");
+
+                    b.Property<int?>("SubRouteId1");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusScheduleId");
+
+                    b.HasIndex("SubRouteId1");
+
+                    b.ToTable("Buses");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.BusSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Destination");
+
+                    b.Property<string>("EndBusStopId");
+
+                    b.Property<DateTime>("EndTime");
+
+                    b.Property<string>("StartBusStopId");
+
+                    b.Property<DateTime>("StartTime");
+
+                    b.Property<string>("StartingPoint");
+
+                    b.Property<string>("TotalDuration");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EndBusStopId");
+
+                    b.HasIndex("StartBusStopId");
+
+                    b.ToTable("BusSchedules");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.BusStop", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BusStopName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BusStop");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.Route", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Distance");
+
+                    b.Property<string>("StartBusStopId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StartBusStopId");
+
+                    b.ToTable("Routes");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.SubRoute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Distance");
+
+                    b.Property<string>("EndBusStopId");
+
+                    b.Property<int>("Fare");
+
+                    b.Property<string>("RouteId");
+
+                    b.Property<int?>("RouteId1");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EndBusStopId");
+
+                    b.HasIndex("RouteId1");
+
+                    b.ToTable("SubRoute");
+                });
+
             modelBuilder.Entity("Common.Models.ApplicationUserToken", b =>
                 {
                     b.HasOne("Common.Models.ApplicationUser", "ApplicationUser")
@@ -127,6 +247,46 @@ namespace TransportTicketingNetwork.Database.Migrations
                         .WithOne("User")
                         .HasForeignKey("Common.Models.User", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.Bus", b =>
+                {
+                    b.HasOne("Modules.Main.Models.BusSchedule")
+                        .WithMany("AllocatedBus")
+                        .HasForeignKey("BusScheduleId");
+
+                    b.HasOne("Modules.Main.Models.SubRoute", "SubRoute")
+                        .WithMany()
+                        .HasForeignKey("SubRouteId1");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.BusSchedule", b =>
+                {
+                    b.HasOne("Modules.Main.Models.BusStop", "EndBusStop")
+                        .WithMany()
+                        .HasForeignKey("EndBusStopId");
+
+                    b.HasOne("Modules.Main.Models.BusStop", "StartBusStop")
+                        .WithMany()
+                        .HasForeignKey("StartBusStopId");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.Route", b =>
+                {
+                    b.HasOne("Modules.Main.Models.BusStop", "StartBusStop")
+                        .WithMany()
+                        .HasForeignKey("StartBusStopId");
+                });
+
+            modelBuilder.Entity("Modules.Main.Models.SubRoute", b =>
+                {
+                    b.HasOne("Modules.Main.Models.BusStop", "EndBusStop")
+                        .WithMany()
+                        .HasForeignKey("EndBusStopId");
+
+                    b.HasOne("Modules.Main.Models.Route", "Route")
+                        .WithMany()
+                        .HasForeignKey("RouteId1");
                 });
 #pragma warning restore 612, 618
         }

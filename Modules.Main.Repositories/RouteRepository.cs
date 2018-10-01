@@ -1,4 +1,5 @@
 ﻿using Common.Base.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Modules.Main.Core.Repositories;
 using Modules.Main.Models;
 using System;
@@ -18,10 +19,15 @@ namespace Modules.Main.Repositories
 
 
         }
-
+        
         public async Task AddRoutes(Route route)
         {
            await _dbContext.AddAsync(route);
         }
+
+        public async Task<IEnumerable<Route>> GetRouteList() {
+            return await _dbContext.Routes.ToListAsync(); 
+        }
+
     }
 }

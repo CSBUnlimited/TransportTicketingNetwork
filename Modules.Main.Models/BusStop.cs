@@ -10,5 +10,7 @@ namespace Modules.Main.Models
 
         public string BusStopName { get; set; }
 
+         
+
     }
 }

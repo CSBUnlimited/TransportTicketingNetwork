@@ -4,18 +4,22 @@ using System.Text;
 
 namespace Modules.Main.Models
 {
-    class Journey
+    public class Journey
     {
-        public int _id { get; set; }
-        public string startLocation { get; set; }
-        public string endLocation { get; set; }
-        public DateTime _startTime { get; set; }
-        public DateTime _endTime { get; set; }
+        public int Id { get; set; }
+        public int StartBusStopId { get; set; }
+        public BusStop StartBusStop { get; set; }
 
-        public ICollection<SubRoute> subRoutes { get; set; }
-        public ICollection<BusStop> _busStops { get; set; }
+        public int EndBusStopId { get; set; }
+        public BusStop EndBusStop { get; set; }
 
-        public BusSchedule busSchedule { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
+        //public ICollection<SubRoute> SubRoutes { get; set; } Use a seperate class for 
+        //public ICollection<BusStop> BusStops { get; set; }
+
+       // public BusSchedule BusSchedule { get; set; }
         
 
         //public string _cardNumber{get; set;}

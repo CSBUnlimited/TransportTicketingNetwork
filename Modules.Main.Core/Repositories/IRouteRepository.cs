@@ -10,6 +10,9 @@ namespace Modules.Main.Core.Repositories
     public interface IRouteRepository : IRepository
     {
         Task AddRoutes(Route route);
+
+        Task<IEnumerable<Route>> GetRouteList();
+
     }
 
 }

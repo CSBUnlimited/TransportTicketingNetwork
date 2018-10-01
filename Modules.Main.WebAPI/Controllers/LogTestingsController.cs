@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Modules.Main.DTOs.TestLog;
@@ -21,13 +22,13 @@ namespace Modules.Main.WebAPI.Controllers
     public class LogTestingsController : ControllerBase
     {
         // ReSharper disable once NotAccessedField.Local
-        private readonly ILogger<UsersController> _logger;
+        private readonly ILogger<AuthorizationController> _logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">Logger injection</param>
-        public LogTestingsController(ILogger<UsersController> logger)
+        public LogTestingsController(ILogger<AuthorizationController> logger)
         {
             _logger = logger;
         }
@@ -44,7 +45,6 @@ namespace Modules.Main.WebAPI.Controllers
         [HttpPost(Name = "EnabledActivityLogs")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [EnableActivityLog]
         public IActionResult EnabledActivityLogs([FromBody]TestLogRequest testLogRequest)
         {
             TestLogResponse response = new TestLogResponse();
@@ -78,6 +78,51 @@ namespace Modules.Main.WebAPI.Controllers
         }
 
         /// <summary>
+        /// This end point disabled automatic runtime logs
+        /// For every request there will two logs. One for the request and other for response.
+        /// This method can occur validation exceptions
+        /// </summary>
+        /// <param name="testLogRequest">FromBody - TestLogRequest</param>
+        /// <returns>TestLogResponse</returns>
+        /// <response code="200">Success</response>
+        /// <response code="400">Bad request by client</response>
+        [HttpPost(Name = "DisabledActivityLogs")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [DisableActivityLog]
+        public IActionResult DisabledActivityLogs([FromBody]TestLogRequest testLogRequest)
+        {
+            TestLogResponse response = new TestLogResponse();
+
+            try
+            {
+                ValidationResult result = new TestLogValidator().Validate(testLogRequest.TestLogViewModel);
+
+                if (result.IsValid)
+                {
+                    testLogRequest.TestLogViewModel.TestMessage = string.Concat(testLogRequest.TestLogViewModel.TestMessage, " - Appended in the controller level");
+
+                    response.TestLogViewModel = new List<TestLogViewModel>()
+                    {
+                        testLogRequest.TestLogViewModel
+                    };
+
+                    response.IsSuccess = true;
+                }
+                else
+                {
+                    throw new ValidationException(result.Errors);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new GlobalException(ex, response);
+            }
+
+            return StatusCode(response.Status, response);
+        }
+
+        /// <summary>
         /// This end point will throw a NullReferenceException and it will handle by Global error handler
         /// </summary>
         /// <returns>UserResponse</returns>
@@ -86,7 +131,6 @@ namespace Modules.Main.WebAPI.Controllers
         [HttpGet(Name = "EnabledActivityWithUnexpectedExceptionLogs")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [EnableActivityLog]
         public IActionResult EnabledActivityWithUnexpectedExceptionLogs()
         {
             TestLogResponse response = new TestLogResponse();
@@ -108,7 +152,6 @@ namespace Modules.Main.WebAPI.Controllers
         [HttpGet(Name = "EnabledActivityWithUnexpectedExceptionWithOuterExceptionLogs")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [EnableActivityLog]
         public IActionResult EnabledActivityWithUnexpectedExceptionWithOuterExceptionLogs()
         {
             TestLogResponse response = new TestLogResponse();
@@ -138,7 +181,7 @@ namespace Modules.Main.WebAPI.Controllers
         [HttpGet(Name = "EnabledActivityWithUnexpectedExceptionUsingGlobalExceptionLogs")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [EnableActivityLog]
+        [AllowAnonymous]
         public IActionResult EnabledActivityWithUnexpectedExceptionUsingGlobalExceptionLogs()
         {
             TestLogResponse response = new TestLogResponse();

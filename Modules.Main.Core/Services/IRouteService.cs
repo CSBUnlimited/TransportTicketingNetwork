@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Modules.Main.Core.Services
 {
-    public interface IRouteService :IService
+    public interface IRouteService : IService
     {
         //Method For Adding a Route
         Task<RouteViewModel> AddRoute(RouteViewModel routes);
 
-         
+        Task<IEnumerable<RouteViewModel>> GetRouteListAsync();
+
+
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Common.Base.DTOs;
+﻿using Common.Base.DTOs;
 
 namespace Modules.Main.DTOs.Login
 {

@@ -1,5 +1,8 @@
-﻿using Common.Core.DataAccess;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Common.Core.DataAccess;
 using Modules.Main.Core.Repositories;
+using Modules.Main.Models;
 
 namespace Modules.Main.Core.DataAccess
 {
@@ -10,6 +13,8 @@ namespace Modules.Main.Core.DataAccess
         IUserRepository UserRepository { get; }
         IBusRepository BusRepository { get; }
         IRouteRepository RouteRepository { get; }
+        IBusScheduleRepository BusScheduleRepository { get; }
+
 
         #endregion
     }

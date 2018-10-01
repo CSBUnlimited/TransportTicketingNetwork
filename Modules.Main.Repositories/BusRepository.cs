@@ -27,6 +27,10 @@ namespace Modules.Main.Repositories
             return await DbContext.Buses.ToListAsync();
         }
 
+        public async Task AddBus(Bus bus)
+        {
+            await DbContext.AddAsync(bus);
+        }
 
 
     }

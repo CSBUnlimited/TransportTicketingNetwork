@@ -30,6 +30,13 @@ namespace Modules.Main.Services
 
             return _mapper.Map<RouteViewModel>(route);
         }
-        
+
+        public async Task<IEnumerable<RouteViewModel>> GetRouteListAsync() {
+            IEnumerable<Route> routes = await _mainUnitOfWork.RouteRepository.GetRouteList();
+
+            return _mapper.Map<IEnumerable<RouteViewModel>>(routes);
+        }
+
+
     }
 }
