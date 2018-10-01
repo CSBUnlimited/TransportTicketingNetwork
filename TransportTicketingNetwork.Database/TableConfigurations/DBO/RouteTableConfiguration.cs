@@ -9,13 +9,9 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.DBO
         public void Configure(EntityTypeBuilder<Modules.Main.Models.Route> builder)
         {
 
-            builder.Property(u => u.Description)
-             .HasMaxLength(100)
-             .IsRequired();
+        
 
-            builder.Property(u => u.StartBusStopId)
-                .HasMaxLength(10)
-                .IsRequired();
+
 
           
 
