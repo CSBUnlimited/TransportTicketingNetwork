@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using Common.Methods;
 using Common.Models;
@@ -33,9 +33,28 @@ namespace TransportTicketingNetwork.Database
             if (context.Users.Any())
                 return;
 
-            List<User> users = new List<User>();
-
             User newUser = new User()
+            {
+                FirstName = "Anonymous",
+                LastName = "Anonymous",
+                Gender = Gender.Male,
+                Email = "anonymous@anonymous.com",
+                Mobile = "xxxxxxxxxx",
+                ApplicationUser = new ApplicationUser()
+                {
+                    Username = "Anonymous",
+                    EffectiveDateTime = DateTime.UtcNow,
+                    ExpireDateTime = DateTime.UtcNow,
+                    IsBlocked = true,
+                    UserType = UserType.Unknown
+                }
+            };
+            AuthenticationMethods.CreatePasswordHashAndSalt("Anonymous", out byte[] passwordHash, out byte[] passwordSalt);
+            newUser.ApplicationUser.PasswordHash = passwordHash;
+            newUser.ApplicationUser.PasswordSalt = passwordSalt;
+            context.Users.Add(newUser);
+
+            newUser = new User()
             {
                 FirstName = "Chathuranga",
                 LastName = "Basnayake",
@@ -45,23 +64,25 @@ namespace TransportTicketingNetwork.Database
                 ApplicationUser = new ApplicationUser()
                 {
                     Username = "CSBUnlimited",
+                    UserType = UserType.Administrator
                 }
             };
-            AuthenticationMethods.CreatePasswordHashAndSalt("5556", out byte[] passwordHash, out byte[] passwordSalt);
+            AuthenticationMethods.CreatePasswordHashAndSalt("5556", out passwordHash, out passwordSalt);
             newUser.ApplicationUser.PasswordHash = passwordHash;
             newUser.ApplicationUser.PasswordSalt = passwordSalt;
             context.Users.Add(newUser);
 
             newUser = new User()
             {
-                FirstName = "Harin",
-                LastName = "Wijesekara",
+                FirstName = "Transport",
+                LastName = "Manager",
                 Gender = Gender.Male,
-                Email = "harin.w@gmail.com",
+                Email = "transport.manager@yahoo.com",
                 Mobile = "077xxxxxxx",
                 ApplicationUser = new ApplicationUser()
                 {
-                    Username = "user1",
+                    Username = "TransportM",
+                    UserType = UserType.TransportManager
                 }
             };
             AuthenticationMethods.CreatePasswordHashAndSalt("user1", out passwordHash, out passwordSalt);
@@ -71,17 +92,36 @@ namespace TransportTicketingNetwork.Database
 
             newUser = new User()
             {
-                FirstName = "Pathmika",
-                LastName = "Rajapakshe",
+                FirstName = "David",
+                LastName = "Beckham",
                 Gender = Gender.Male,
-                Email = "pathmika.r@outlook.com",
-                Mobile = "076yyyyyyy",
+                Email = "david.beckham@gmail.com",
+                Mobile = "1254987454665",
                 ApplicationUser = new ApplicationUser()
                 {
-                    Username = "user2",
+                    Username = "112233445566778899",
+                    UserType = UserType.ForeignCustomer
                 }
             };
-            AuthenticationMethods.CreatePasswordHashAndSalt("user2", out passwordHash, out passwordSalt);
+            AuthenticationMethods.CreatePasswordHashAndSalt("david", out passwordHash, out passwordSalt);
+            newUser.ApplicationUser.PasswordHash = passwordHash;
+            newUser.ApplicationUser.PasswordSalt = passwordSalt;
+            context.Users.Add(newUser);
+
+            newUser = new User()
+            {
+                FirstName = "Kavi",
+                LastName = "Suchi",
+                Gender = Gender.Female,
+                Email = "kavi.suchi@gmail.com",
+                Mobile = "071xxxxxxx",
+                ApplicationUser = new ApplicationUser()
+                {
+                    Username = "961120570v",
+                    UserType = UserType.LocalCustomer
+                }
+            };
+            AuthenticationMethods.CreatePasswordHashAndSalt("kavee", out passwordHash, out passwordSalt);
             newUser.ApplicationUser.PasswordHash = passwordHash;
             newUser.ApplicationUser.PasswordSalt = passwordSalt;
             context.Users.Add(newUser);

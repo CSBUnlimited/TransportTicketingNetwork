@@ -34,6 +34,12 @@ namespace TransportTicketingNetwork.Database
 
             #endregion
 
+            #region DBO
+
+            
+
+            #endregion
+
             #endregion
 
             base.OnModelCreating(modelBuilder);

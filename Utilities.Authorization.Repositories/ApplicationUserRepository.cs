@@ -30,7 +30,10 @@ namespace Utilities.Authorization.Repositories
         public async Task<ApplicationUser> GetApplicationUserWhichNotExpiredByUsernameAsync(string username)
         {
             return await DbContext.ApplicationUsers
-                .SingleOrDefaultAsync(au => au.Username == username && au.EffectiveDateTime <= DateTime.UtcNow && au.ExpireDateTime > DateTime.UtcNow);
+                .SingleOrDefaultAsync(au => au.Username == username &&
+                                            au.UserType != UserType.Unknown && 
+                                            au.EffectiveDateTime <= DateTime.UtcNow && 
+                                            au.ExpireDateTime > DateTime.UtcNow);
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Utilities.Authorization.Repositories
             return await DbContext.ApplicationUsers
                 .Include(au => au.User)
                 .SingleOrDefaultAsync(au => au.Username == username &&
+                                            au.UserType != UserType.Unknown &&
                                             !au.IsBlocked &&
                                             au.EffectiveDateTime <= DateTime.UtcNow &&
                                             au.ExpireDateTime > DateTime.UtcNow);
@@ -57,7 +61,8 @@ namespace Utilities.Authorization.Repositories
         /// <returns>ApplicationUser, null if not found</returns>
         public async Task<ApplicationUser> GetApplicationUserByUsernameAsync(string username)
         {
-            return await DbContext.ApplicationUsers.SingleOrDefaultAsync(au => au.Username == username);
+            return await DbContext.ApplicationUsers.SingleOrDefaultAsync(au => au.Username == username &&
+                                                                               au.UserType != UserType.Unknown);
         }
 
         /// <summary>
@@ -69,6 +74,7 @@ namespace Utilities.Authorization.Repositories
         public async Task<bool> IsApplicationUserAvailableWhichNotExpiredByUsernameAsync(string username)
         {
             return await DbContext.ApplicationUsers.AnyAsync(au => au.Username == username &&
+                                                                   au.UserType != UserType.Unknown &&
                                                                    au.EffectiveDateTime <= DateTime.UtcNow &&
                                                                    au.ExpireDateTime > DateTime.UtcNow);
         }
@@ -81,7 +87,8 @@ namespace Utilities.Authorization.Repositories
         /// <returns>True if found</returns>
         public async Task<bool> IsApplicationUserAvailableWhichNotBlockedAndExpiredByUsernameAsync(string username)
         {
-            return await DbContext.ApplicationUsers.AnyAsync(au => au.Username == username && 
+            return await DbContext.ApplicationUsers.AnyAsync(au => au.Username == username &&
+                                                                   au.UserType != UserType.Unknown && 
                                                                    !au.IsBlocked && 
                                                                    au.EffectiveDateTime <= DateTime.UtcNow && 
                                                                    au.ExpireDateTime > DateTime.UtcNow);
