@@ -17,6 +17,7 @@ namespace Modules.Main.Common.Configurations
             CreateMap<Route, RouteViewModel>();
             CreateMap<Bus, BusViewModel>();
             CreateMap<BusSchedule, BusScheduleViewModel>();
+            CreateMap<Journey, JourneyViewModel>();
 
         }
 
@@ -25,6 +26,7 @@ namespace Modules.Main.Common.Configurations
             CreateMap<RouteViewModel, Route>();
             CreateMap<BusViewModel, Bus>();
             CreateMap<BusScheduleViewModel, BusSchedule>();
+            CreateMap<JourneyViewModel, Journey>();
 
         }
     }
