@@ -27,7 +27,7 @@ namespace Utilities.Authorization.Configurations
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Common Request Info Model
-            services.AddScoped<RequestInformation>();
+            services.AddScoped<IRequestInformation, RequestInformation>();
 
 
             services.AddScoped<IAuthorizationHandler, ActionPermissionHandler>();

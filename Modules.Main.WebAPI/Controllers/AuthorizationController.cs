@@ -7,11 +7,10 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Modules.Main.Core.Services;
 using Modules.Main.DTOs.Login;
-using Modules.Main.DTOs.User;
 using Modules.Main.ViewModels;
 using Utilities.Exception.Models;
+using IAuthorizationService = Modules.Main.Core.Services.IAuthorizationService;
 
 namespace Modules.Main.WebAPI.Controllers
 {
@@ -26,17 +25,17 @@ namespace Modules.Main.WebAPI.Controllers
     public class AuthorizationController : ControllerBase
     {
         private readonly ILogger<AuthorizationController> _logger;
-        private readonly IUserService _userService;
+        private readonly IAuthorizationService _authorizationService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">Logger injection</param>
-        /// <param name="userService">User Service</param>
-        public AuthorizationController(ILogger<AuthorizationController> logger, IUserService userService)
+        /// <param name="authorizationService">Authorization Service</param>
+        public AuthorizationController(ILogger<AuthorizationController> logger, IAuthorizationService authorizationService)
         {
             _logger = logger;
-            _userService = userService;
+            _authorizationService = authorizationService;
         }
 
         /// <summary>
@@ -58,11 +57,11 @@ namespace Modules.Main.WebAPI.Controllers
 
                 if (result.IsValid)
                 {
-                    response.AuthenticationToken = await _userService.UserLoginAsync(loginRequest.LoginViewModel);
+                    response.AuthenticationToken = await _authorizationService.UserLoginAsync(loginRequest.LoginViewModel);
                 }
                 else
                 {
-                    throw new ValidationException("Invalid username or Password");
+                    throw new ValidationException("Invalid Username or Password.");
                 }
 
                 response.IsSuccess = true;
@@ -88,7 +87,7 @@ namespace Modules.Main.WebAPI.Controllers
 
             try
             {
-                await _userService.UserLogoutAsync();
+                await _authorizationService.UserLogoutAsync();
 
                 response.IsSuccess = true;
                 response.Message = "User logged out";
@@ -115,7 +114,7 @@ namespace Modules.Main.WebAPI.Controllers
 
             try
             {
-                response.AuthenticationToken = await _userService.RenewAuthenticationTokenAsync();
+                response.AuthenticationToken = await _authorizationService.RenewAuthenticationTokenAsync();
 
                 response.IsSuccess = true;
             }

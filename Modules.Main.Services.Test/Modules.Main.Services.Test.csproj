@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.100" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="Moq" Version="4.10.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
@@ -16,9 +15,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
-    <ProjectReference Include="..\Modules.Main.DTOs\Modules.Main.DTOs.csproj" />
+    <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
+    <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
     <ProjectReference Include="..\Modules.Main.ViewModels\Modules.Main.ViewModels.csproj" />
-    <ProjectReference Include="..\Modules.Main.WebAPI\Modules.Main.WebAPI.csproj" />
+    <ProjectReference Include="..\Utilities.Authorization.Core\Utilities.Authorization.Core.csproj" />
   </ItemGroup>
 
 </Project>
