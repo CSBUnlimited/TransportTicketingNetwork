@@ -8,19 +8,12 @@ namespace Modules.Main.Models
     {
         public int Id { get; set; }
 
-        public int RootNumber { get; set; }
-
-        public int Distance { get; set; }
-
         public string Description { get; set; }
 
-        public string StartBusStopId { get; set; }
+        public int ExpressFare { get; set; }
 
-        public BusStop StartBusStop { get; set; }
+        public int NormalFare { get; set; }
 
-        
-        
 
-        
     }
 }

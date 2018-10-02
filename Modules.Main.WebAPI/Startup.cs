@@ -9,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Modules.Main.Common.Configurations;
-using Modules.Main.Core.Services;
-using Modules.Main.Services;
 using Serilog;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using TransportTicketingNetwork.Database;
+using Utilities.Authorization.Handlers;
 using Utilities.Exception.Common.Filters;
 using Utilities.Logging.Common.Configurations;
 using Utilities.Logging.Common.Filters;
@@ -38,7 +38,8 @@ namespace Modules.Main.WebAPI
         {
             Configuration = configuration;
 
-            Log.Logger = new LoggerConfiguration().ConfigureSerilog(configuration);
+            Log.Logger = new LoggerConfiguration()
+                .ConfigureSerilog(configuration);
         }
 
         /// <summary>
@@ -86,14 +87,12 @@ namespace Modules.Main.WebAPI
             // Swagger Configure Services
             services.SwaggerConfigureServices(Configuration.GetSection("Swagger")["CommentsXMLFilePath"]);
 
-            //Add  Route Services
-            services.AddSingleton<IRouteService, RouteService>();
-
-            //Add SubRoute Services
-            services.AddSingleton<ISubRouteService,SubRouteService>();
-
             // Add Authentication Services
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(authOptions =>
+                {
+                    authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters()
@@ -105,10 +104,19 @@ namespace Modules.Main.WebAPI
                     };
                 });
 
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(nameof(ActionPermissionHandler), policy => policy.Requirements.Add(new ActionPermissionRequirement()));
+            });
+
             services.AddMvc(options =>
             {
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-                options.Filters.Add(typeof(ActivityLogActionFilter));
+                options.Filters.Add(new AuthorizeFilter(nameof(ActionPermissionHandler)));
+                options.Filters.Add<HttpGlobalExceptionFilter>();
+                options.Filters.Add<ActivityLogActionFilter>();
+                //options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                //options.Filters.Add(typeof(ActivityLogActionFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

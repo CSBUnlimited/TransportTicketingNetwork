@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Utilities.Authorization.Common.Models;
 using Utilities.Authorization.Core.DataAccess;
 using Utilities.Authorization.Core.Repositories;
-using Utilities.Authorization.Core.Services;
 using Utilities.Authorization.DataAccess;
+using Utilities.Authorization.Handlers;
 using Utilities.Authorization.Repositories;
 using Utilities.Authorization.Services;
+using IAuthorizationService = Utilities.Authorization.Core.Services.IAuthorizationService;
 
 namespace Utilities.Authorization.Configurations
 {
@@ -23,11 +26,19 @@ namespace Utilities.Authorization.Configurations
             // To get authentication token info
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            // Common Request Info Model
+            services.AddScoped<RequestInformation>();
+
+
+            services.AddScoped<IAuthorizationHandler, ActionPermissionHandler>();
+
             #endregion
 
             #region Repository - Dependencies
 
-            services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IApplicationUserTokenRepository, ApplicationUserTokenRepository>();
 
             #endregion
 

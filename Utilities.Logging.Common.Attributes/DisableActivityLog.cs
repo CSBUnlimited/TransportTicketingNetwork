@@ -3,7 +3,7 @@
 namespace Utilities.Logging.Common.Attributes
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class EnableActivityLog : Attribute
+    public class DisableActivityLog : Attribute
     {
     }
 }

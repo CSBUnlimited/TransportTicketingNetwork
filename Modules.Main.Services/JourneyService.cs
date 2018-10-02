@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Modules.Main.Services
 {
-    public class JourneyService : BaseService,IJourneyService
+    public class JourneyService : BaseService, IJourneyService
     {
         private IMainUnitOfWork _mainUnitOfWork;
         private IMapper _mapper;

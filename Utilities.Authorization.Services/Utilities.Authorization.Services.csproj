@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Common.Base.Services\Common.Base.Services.csproj" />
     <ProjectReference Include="..\Common.Methods\Common.Methods.csproj" />
     <ProjectReference Include="..\Common.Models\Common.Models.csproj" />
+    <ProjectReference Include="..\Utilities.Authorization.Common.Models\Utilities.Authorization.Common.Models.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Core\Utilities.Authorization.Core.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Models\Utilities.Authorization.Models.csproj" />
   </ItemGroup>

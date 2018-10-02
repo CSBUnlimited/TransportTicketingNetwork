@@ -14,6 +14,7 @@ namespace TransportTicketingNetwork.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Bus> Buses { get; set; }
 
+        public DbSet<BusSchedule> BusSchedules { get; set; }
         public DbSet<Route> Routes { get; set; }
 
         #endregion
@@ -30,6 +31,12 @@ namespace TransportTicketingNetwork.Database
             modelBuilder.ApplyConfiguration(new ApplicationUserTableConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserTokenTableConfiguration());
             modelBuilder.ApplyConfiguration(new UserTableConfiguration());
+
+            #endregion
+
+            #region DBO
+
+            
 
             #endregion
 

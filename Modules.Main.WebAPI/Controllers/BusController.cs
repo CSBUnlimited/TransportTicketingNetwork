@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Modules.Main.Core.Services;
 using Modules.Main.DTOs.Bus;
-using Utilities.Logging.Common.Attributes;
+using Modules.Main.ViewModels;
+using Utilities.Exception.Models;
 
 namespace Modules.Main.WebAPI.Controllers
 {
@@ -18,7 +17,6 @@ namespace Modules.Main.WebAPI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [EnableActivityLog]
     public class BusController : ControllerBase
     {
         private readonly ILogger<BusController> _logger;
@@ -45,7 +43,6 @@ namespace Modules.Main.WebAPI.Controllers
         [HttpGet(Name = "GetBusList")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [EnableActivityLog]
         public async Task<IActionResult> GetBusList()
         {
             BusResponse response = new BusResponse();
@@ -60,6 +57,38 @@ namespace Modules.Main.WebAPI.Controllers
             {
                 // This line will throw a ArgumentException
                 throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
+
+            return StatusCode(response.Status, response);
+        }
+
+
+        /// <summary>
+        /// Login UserAsync - Async
+        /// </summary>
+        /// <param name="busRequest">FromBody - UserRequest</param>
+        /// <returns>BusResponse</returns>
+        [HttpPost(Name = "AddBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddBus([FromBody]BusRequest busRequest)
+        {
+            BusResponse response = new BusResponse();
+
+            try
+            {
+
+                response.BusViewModels = new List<BusViewModel>();
+
+                {
+                    await _busService.AddBusAsync(busRequest.BusViewModel);
+                };
+
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw new GlobalException(ex, response);
             }
 
             return StatusCode(response.Status, response);

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Context;
+using Utilities.Authorization.Common.Models;
 using Utilities.Logging.Common.Attributes;
 using Utilities.Logging.Extensions;
 
@@ -18,6 +19,16 @@ namespace Utilities.Logging.Common.Filters
     public class ActivityLogActionFilter : IActionFilter
     {
         private static readonly ILogger Log = Serilog.Log.ForContext<ActivityLogActionFilter>();
+        private readonly RequestInformation _requestInformation;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="requestInformation">Request Information</param>
+        public ActivityLogActionFilter(RequestInformation requestInformation)
+        {
+            _requestInformation = requestInformation;
+        }
 
         /// <summary>
         /// Calls in run time - when a request comes to the controller
@@ -25,11 +36,30 @@ namespace Utilities.Logging.Common.Filters
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            if (!(context.ActionDescriptor is ControllerActionDescriptor actionDescriptor))
+                return;
+
+            DisableActivityLog controllerAttribute = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerTypeInfo.GetCustomAttribute<DisableActivityLog>();
+            DisableActivityLog actionAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<DisableActivityLog>();
+            
+            // Check DisableActivityLog is in the controller/ method
+            if (!(controllerAttribute == null && actionAttribute == null))
+            {
+                return;
+            }
+
             LogContext.PushProperty("Exchange", "Request");
             LogContext.PushProperty("Controller", context.RouteData.Values["controller"]);
             LogContext.PushProperty("Action", context.RouteData.Values["action"]);
             LogContext.PushProperty("ActivityType", context.HttpContext.Request.Method);
             LogContext.PushProperty("RequestPath", context.HttpContext.Request.Path);
+
+            LogContext.PushProperty("RequestedIPAddress", _requestInformation.RequestedIpAddress);
+
+            if (_requestInformation.SessionHash != null)
+            {
+                LogContext.PushProperty("SessionHash", _requestInformation.SessionHash);
+            }
 
             foreach (KeyValuePair<string, object> arg in context.ActionArguments)
             {
@@ -47,8 +77,15 @@ namespace Utilities.Logging.Common.Filters
         {
             if (!(context.ActionDescriptor is ControllerActionDescriptor actionDescriptor)) return;
 
-            EnableActivityLog controllerAttribute = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerTypeInfo.GetCustomAttribute<EnableActivityLog>();
-            EnableActivityLog actionAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<EnableActivityLog>();
+            DisableActivityLog controllerAttribute = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerTypeInfo.GetCustomAttribute<DisableActivityLog>();
+            DisableActivityLog actionAttribute = actionDescriptor.MethodInfo.GetCustomAttribute<DisableActivityLog>();
+            
+            // Check whether context result is null or empty or DisableActivityLog is in the controller/ method
+            if (context.Result == null || context.Result.GetType().GetInterface(nameof(EmptyResult)) != null
+                                       || !(controllerAttribute == null && actionAttribute == null))
+            {
+                return;
+            }
 
             LogContext.PushProperty("Exchange", "Response");
             LogContext.PushProperty("Controller", context.RouteData.Values["controller"]);
@@ -56,11 +93,11 @@ namespace Utilities.Logging.Common.Filters
             LogContext.PushProperty("ActivityType", context.HttpContext.Request.Method);
             LogContext.PushProperty("RequestPath", context.HttpContext.Request.Path);
 
-            // Check whether context result is null or empty or EnableActivityLog is in the controller/ method
-            if (context.Result == null || context.Result.GetType().GetInterface(nameof(EmptyResult)) != null
-                || (controllerAttribute == null && actionAttribute == null))
+            LogContext.PushProperty("RequestedIPAddress", _requestInformation.RequestedIpAddress);
+
+            if (_requestInformation.SessionHash != null)
             {
-                return;
+                LogContext.PushProperty("SessionHash", _requestInformation.SessionHash);
             }
 
             if (context.Result.GetType().GetInterface(nameof(IActionResult)) != null)

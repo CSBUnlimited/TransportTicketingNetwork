@@ -4,6 +4,37 @@
         <name>Modules.Main.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:Modules.Main.WebAPI.Controllers.AuthorizationController">
+            <summary>
+            Users Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController},Modules.Main.Core.Services.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="userService">User Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
+            <summary>
+            Login User - Async
+            </summary>
+            <param name="loginRequest">FromBody - UserRequest</param>
+            <returns>LoginResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.LogoutUserAsync">
+            <summary>
+            Logout User - Async
+            </summary>
+            <returns>LoginResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.RenewAuthenticationTokenAsync">
+            <summary>
+            Renew Authentication Token - Async
+            </summary>
+            <returns>LoginResponse</returns>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.BusController">
             <summary>
             Buses Controller
@@ -25,6 +56,13 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.AddBus(Modules.Main.DTOs.Bus.BusRequest)">
+            <summary>
+            Login UserAsync - Async
+            </summary>
+            <param name="busRequest">FromBody - UserRequest</param>
+            <returns>BusResponse</returns>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
             <summary>
             This is for get the journey locations
@@ -36,7 +74,7 @@
             Log Testings Controller - Purpose is to test logs are working correctly
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController})">
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController})">
             <summary>
             Constructor
             </summary>
@@ -45,6 +83,17 @@
         <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.EnabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
             <summary>
             This end point enabled automatic runtime logs
+            For every request there will two logs. One for the request and other for response.
+            This method can occur validation exceptions
+            </summary>
+            <param name="testLogRequest">FromBody - TestLogRequest</param>
+            <returns>TestLogResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.LogTestingsController.DisabledActivityLogs(Modules.Main.DTOs.TestLog.TestLogRequest)">
+            <summary>
+            This end point disabled automatic runtime logs
             For every request there will two logs. One for the request and other for response.
             This method can occur validation exceptions
             </summary>
@@ -79,31 +128,32 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
-        <member name="T:Modules.Main.WebAPI.Controllers.UsersController">
+        <member name="T:Modules.Main.WebAPI.Controllers.RouteController">
             <summary>
-            Users Controller
+            Route Controller
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.UsersController},Modules.Main.Core.Services.IUserService)">
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.RouteController},Modules.Main.Core.Services.IRouteService)">
             <summary>
             Constructor
             </summary>
             <param name="logger">Logger injection</param>
-            <param name="userService">User Service</param>
+            <param name="routeService">Route Service</param>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.AddRoute(Modules.Main.DTOs.Route.RouteRequest)">
             <summary>
-            Login UserAsync - Async
+            Route Async
             </summary>
-            <param name="loginRequest">FromBody - UserRequest</param>
-            <returns>LoginResponse</returns>
+            <param name="routeRequest">FromBody-RouteRequest</param>
+            <returns>RouteResponse</returns>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.UsersController.UserRegistrationAsync(Modules.Main.DTOs.User.UserRequest)">
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.GetRouteList">
             <summary>
-            User Registration - Async
+            Getting Route
             </summary>
-            <param name="userRequest">FromBody - UserRequest</param>
-            <returns>UserResponse</returns>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
         </member>
         <member name="T:Modules.Main.WebAPI.Program">
             <summary>

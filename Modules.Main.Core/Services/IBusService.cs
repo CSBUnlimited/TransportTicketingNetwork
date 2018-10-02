@@ -9,7 +9,11 @@ namespace Modules.Main.Core.Services
 {
     public interface IBusService: IService 
     {
+        //Getting all the Buses
         Task<IEnumerable<BusViewModel>> GetBusListAsync();
+
+        //Adding a Bus
+        Task<BusViewModel> AddBusAsync(BusViewModel buses);
     }
 
 }
