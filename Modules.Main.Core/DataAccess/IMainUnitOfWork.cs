@@ -9,7 +9,8 @@ namespace Modules.Main.Core.DataAccess
 
         IUserRepository UserRepository { get; }
         IBusRepository BusRepository { get; }
-
+        IRouteRepository RouteRepository { get; }
+        IJourneyRepository JourneyRepository { get; }
 
         #endregion
     }
