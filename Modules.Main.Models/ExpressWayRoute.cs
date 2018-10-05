@@ -12,5 +12,7 @@ namespace Modules.Main.Models
 
         public float Distance { get; set; }
 
+        public int Fare { get; set; }
+
     }
 }
