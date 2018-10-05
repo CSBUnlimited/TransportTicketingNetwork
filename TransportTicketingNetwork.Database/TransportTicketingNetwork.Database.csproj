@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Utilities.Logging.Extensions\Utilities.Logging.Extensions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TableConfigurations\JNY\" />
+  </ItemGroup>
+
 </Project>

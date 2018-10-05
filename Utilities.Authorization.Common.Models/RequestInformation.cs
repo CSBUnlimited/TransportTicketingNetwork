@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Utilities.Authorization.Common.Models
 {
-    public class RequestInformation
+    public class RequestInformation : IRequestInformation
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

@@ -1,25 +1,21 @@
 ﻿using System.Threading.Tasks;
 using Common.Base.Services;
-using Modules.Main.Core.DataAccess;
 using Modules.Main.Core.Services;
 using Modules.Main.ViewModels;
-using Utilities.Authorization.Core.Services;
+using UtilAuth = Utilities.Authorization.Core.Services;
 
 namespace Modules.Main.Services
 {
-    public class UserService : BaseService, IUserService
+    public class AuthorizationService : BaseService, IAuthorizationService
     {
-        private readonly IMainUnitOfWork _mainUnitOfWork;
-        private readonly IAuthorizationService _authorizationService;
+        private readonly UtilAuth.IAuthorizationService _authorizationService;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="mainUnitOfWork">Main Unit Of Work</param>
         /// <param name="authorizationService">Authorization Service</param>
-        public UserService(IMainUnitOfWork mainUnitOfWork, IAuthorizationService authorizationService)
+        public AuthorizationService(UtilAuth.IAuthorizationService authorizationService)
         {
-            _mainUnitOfWork = mainUnitOfWork;
             _authorizationService = authorizationService;
         }
 

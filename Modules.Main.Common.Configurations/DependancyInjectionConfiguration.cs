@@ -43,7 +43,7 @@ namespace Modules.Main.Common.Configurations
 
             #region Service - Dependencies
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<IJourneyService, JourneyService>();
             services.AddScoped<IRouteService, RouteService>();
             services.AddScoped<IBusStopService, BusStopService>();

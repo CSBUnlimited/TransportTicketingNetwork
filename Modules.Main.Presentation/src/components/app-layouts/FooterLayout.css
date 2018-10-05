@@ -1,0 +1,10 @@
+.footer-logo_FooterLayout {
+    height: 25px;
+    width: 25px;
+}
+
+.footer-company-name_FooterLayout {
+    margin-left: 10px;
+    margin-right: 5px;
+    font-weight: bold;
+}

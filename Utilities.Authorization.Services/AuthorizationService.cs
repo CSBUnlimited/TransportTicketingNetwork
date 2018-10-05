@@ -17,9 +17,9 @@ namespace Utilities.Authorization.Services
     {
         private readonly IAuthorizationUnitOfWork _authorizationUnitOfWork;
         private readonly IConfiguration _configuration;
-        private readonly RequestInformation _requestInformation;
+        private readonly IRequestInformation _requestInformation;
 
-        public AuthorizationService(IAuthorizationUnitOfWork authorizationUnitOfWork, IConfiguration configuration, RequestInformation requestInformation)
+        public AuthorizationService(IAuthorizationUnitOfWork authorizationUnitOfWork, IConfiguration configuration, IRequestInformation requestInformation)
         {
             _authorizationUnitOfWork = authorizationUnitOfWork;
             _configuration = configuration;

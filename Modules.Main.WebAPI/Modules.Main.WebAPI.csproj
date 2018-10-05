@@ -34,11 +34,7 @@
     <ProjectReference Include="..\Common.Base.DataAccess\Common.Base.DataAccess.csproj" />
     <ProjectReference Include="..\Modules.Main.Common.Configurations\Modules.Main.Common.Configurations.csproj" />
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
-    <ProjectReference Include="..\Modules.Main.DataAccess\Modules.Main.DataAccess.csproj" />
     <ProjectReference Include="..\Modules.Main.DTOs\Modules.Main.DTOs.csproj" />
-    <ProjectReference Include="..\Modules.Main.Repositories\Modules.Main.Repositories.csproj" />
-    <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
-    <ProjectReference Include="..\TransportTicketingNetwork.Database\TransportTicketingNetwork.Database.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Handlers\Utilities.Authorization.Handlers.csproj" />
     <ProjectReference Include="..\Utilities.Exception.Common.Filters\Utilities.Exception.Common.Filters.csproj" />
     <ProjectReference Include="..\Utilities.Logging.Common.Configurations\Utilities.Logging.Common.Configurations.csproj" />

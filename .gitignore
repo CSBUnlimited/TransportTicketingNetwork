@@ -2,8 +2,20 @@
 # This .gitignore file was created by Chathuranga Basnayake
 ################################################################################
 
+# Common
+
 /.vs
+/.vscode
+
+# Exclude log files
+
+/.logs/main
+
+# Backend Projects
+
 */bin
 */obj
-/.vscode
-/.logs/main
+
+# Frontend Projects
+
+*/node_modules

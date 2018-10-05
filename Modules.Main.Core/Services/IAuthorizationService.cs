@@ -4,7 +4,7 @@ using Modules.Main.ViewModels;
 
 namespace Modules.Main.Core.Services
 {
-    public interface IUserService : IService
+    public interface IAuthorizationService : IService
     {
         /// <summary>
         /// Check user given data is valid or not

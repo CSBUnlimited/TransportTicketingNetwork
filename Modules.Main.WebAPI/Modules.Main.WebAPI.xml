@@ -9,12 +9,12 @@
             Users Controller
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController},Modules.Main.Core.Services.IUserService)">
+        <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.AuthorizationController},Modules.Main.Core.Services.IAuthorizationService)">
             <summary>
             Constructor
             </summary>
             <param name="logger">Logger injection</param>
-            <param name="userService">User Service</param>
+            <param name="authorizationService">Authorization Service</param>
         </member>
         <member name="M:Modules.Main.WebAPI.Controllers.AuthorizationController.LoginUserAsync(Modules.Main.DTOs.Login.LoginRequest)">
             <summary>

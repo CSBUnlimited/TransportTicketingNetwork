@@ -19,13 +19,13 @@ namespace Utilities.Logging.Common.Filters
     public class ActivityLogActionFilter : IActionFilter
     {
         private static readonly ILogger Log = Serilog.Log.ForContext<ActivityLogActionFilter>();
-        private readonly RequestInformation _requestInformation;
+        private readonly IRequestInformation _requestInformation;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="requestInformation">Request Information</param>
-        public ActivityLogActionFilter(RequestInformation requestInformation)
+        public ActivityLogActionFilter(IRequestInformation requestInformation)
         {
             _requestInformation = requestInformation;
         }
