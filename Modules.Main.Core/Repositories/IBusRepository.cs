@@ -9,6 +9,13 @@ namespace Modules.Main.Core.Repositories
 {
     public interface IBusRepository : IRepository
     {
+
+        /// <summary>
+        /// Get Bus 
+        /// </summary>
+        /// <returns>Bus or null, if not found</returns>
+        Task<Bus> GetBus(string busNumber);
+        
         /// <summary>
         /// Get Bus List
         /// </summary>
@@ -21,6 +28,16 @@ namespace Modules.Main.Core.Repositories
         /// </summary>
         /// <returns></returns>
         Task AddBus(Bus bus);
+
+        /// <summary>
+        /// Delete Bus
+        /// </summary>
+        /// <returns></returns>
+        void DeleteBus(Bus bus);
+
+
+
+
 
     }
 }
