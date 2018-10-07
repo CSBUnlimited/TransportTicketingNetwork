@@ -35,5 +35,10 @@ namespace Modules.Main.Services
 
             return _mapper.Map<BusViewModel>(bus);
         }
+
+        public Task<BusViewModel> DeleteBus(string busNumber)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
