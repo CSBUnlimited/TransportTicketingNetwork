@@ -17,6 +17,8 @@ namespace TransportTicketingNetwork.Database
         public DbSet<BusSchedule> BusSchedules { get; set; }
         public DbSet<Route> Routes { get; set; }
 
+        public DbSet<Journey> Journeys { get; set; }
+
         #endregion
 
         public TransportTicketingNetworkDbContext(DbContextOptions<TransportTicketingNetworkDbContext> options) : base(options)

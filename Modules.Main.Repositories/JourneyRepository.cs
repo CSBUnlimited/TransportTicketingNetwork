@@ -11,16 +11,21 @@ namespace Modules.Main.Repositories
 {
     public class JourneyRepository : BaseRepository, IJourneyRepository
     {
-        protected new TransportTicketingNetworkDbContext DbContext { get; }
+        private TransportTicketingNetworkDbContext _dbContext;
         public JourneyRepository(TransportTicketingNetworkDbContext dbContext) : base(dbContext)
         {
-            DbContext = dbContext;
+            _dbContext= dbContext;
 
         }
 
         public Task GetLocations(Journey journey)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task AddJourney(Journey journey)
+        {
+            await _dbContext.Journeys.AddAsync(journey);
         }
     }
 }
