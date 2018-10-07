@@ -5,11 +5,10 @@ using System.Text;
 
 namespace Modules.Main.ViewModels
 {
-    public class RouteViewModel : BaseViewModel
+    public class BusStopViewModel :BaseViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public int Distance { get; set; }
-
+        public string BusStopName { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 
 /.vs
 /.vscode
+*/.idea
 
 # Exclude log files
 
