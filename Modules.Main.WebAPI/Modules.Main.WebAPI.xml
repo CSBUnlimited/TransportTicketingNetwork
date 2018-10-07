@@ -84,7 +84,7 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyList">
             <summary>
             This is for get the journey locations
             </summary>

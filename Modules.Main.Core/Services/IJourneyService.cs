@@ -13,6 +13,6 @@ namespace Modules.Main.Core.Services
             //Method For Adding a Route
             Task<JourneyViewModel> AddJourney(JourneyViewModel journey);
 
-            //Task<IEnumerable<JourneyViewModel>> GetJourneyListAsync();
+            Task<IEnumerable<JourneyViewModel>> GetJourneyListAsync();
     }
 }

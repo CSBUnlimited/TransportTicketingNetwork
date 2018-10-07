@@ -29,15 +29,32 @@ namespace Modules.Main.WebAPI.Controllers
         /// This is for get the journey locations
         /// </summary>
         /// <returns></returns>
-        [HttpGet(Name = "GetJourneyLocation")]
+        [HttpGet(Name = "GetJourneyList")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetJourneyLocation()
+        public async Task<IActionResult> GetJourneyList()
         {
             JourneyResponse response = new JourneyResponse();
+
+            try
+            {
+                response.JourneyViewModels = await _journeyService.GetJourneyListAsync();
+                response.IsSuccess = true;
+            }
+            catch(Exception ex)
+            {
+                // This line will throw a ArgumentException
+                throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
             
             return StatusCode(response.Status, response);
         }
+
+        [HttpGet(Name = "GetRouteList")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+
+        
 
         [HttpPost("AddJourney")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
