@@ -16,13 +16,18 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.USM
                 .IsRequired()
                 .HasMaxLength(20);
 
-            builder.Property(u => u.PasswordHash).IsRequired();
+            builder.Property(au => au.PasswordHash).IsRequired();
 
-            builder.Property(u => u.PasswordSalt).IsRequired();
+            builder.Property(au => au.PasswordSalt).IsRequired();
 
-            builder.Property(u => u.EffectiveDateTime).HasDefaultValueSql(DatabaseConstants.CurrentUtcDateTimeValueSql);
+            builder.Property(au => au.EffectiveDateTime).HasDefaultValueSql(DatabaseConstants.CurrentUtcDateTimeValueSql);
 
-            builder.Property(u => u.ExpireDateTime).HasDefaultValueSql(DatabaseConstants.ExpireUtcDateTimeValueSql);
+            builder.Property(au => au.ExpireDateTime).HasDefaultValueSql(DatabaseConstants.ExpireUtcDateTimeValueSql);
+
+            builder.HasOne(au => au.UserRole)
+                .WithMany(ur => ur.ApplicationUsers)
+                .HasForeignKey(au => au.UserRoleId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

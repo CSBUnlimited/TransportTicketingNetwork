@@ -7,14 +7,9 @@
         public string LastName { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public Gender Gender { get; set; }
+        public GenderEnum GenderEnum { get; set; }
+        public int AccountBalance { get; set; }
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-    }
-
-    public enum Gender : byte
-    {
-        Male = 0,
-        Female = 1
     }
 }

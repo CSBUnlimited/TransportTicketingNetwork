@@ -26,10 +26,13 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.USM
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(u => u.Gender)
+            builder.Property(u => u.GenderEnum)
                 .IsRequired();
 
-            builder.HasOne(u => u.ApplicationUser).WithOne(au => au.User).HasForeignKey<User>(u => u.ApplicationUserId);
+            builder.HasOne(u => u.ApplicationUser)
+                .WithOne(au => au.User)
+                .HasForeignKey<User>(u => u.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

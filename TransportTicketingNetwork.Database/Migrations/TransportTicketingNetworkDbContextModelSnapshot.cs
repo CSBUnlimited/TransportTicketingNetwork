@@ -41,13 +41,15 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired();
 
-                    b.Property<byte>("UserType");
+                    b.Property<int>("UserRoleId");
 
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserRoleId");
 
                     b.HasIndex("Username")
                         .IsUnique();
@@ -83,13 +85,59 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.ToTable("ApplicationUserTokens","usm");
                 });
 
+            modelBuilder.Entity("Common.Models.MultiPurposeTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("EnumValue");
+
+                    b.Property<string>("EnumValueName");
+
+                    b.Property<int>("MultiPurposeTagTypeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MultiPurposeTagTypeId");
+
+                    b.ToTable("MultiPurposeTags","cmn");
+                });
+
+            modelBuilder.Entity("Common.Models.MultiPurposeTagType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("EnumName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MultiPurposeTagTypes","cmn");
+                });
+
             modelBuilder.Entity("Common.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccountBalance");
+
                     b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -99,7 +147,7 @@ namespace TransportTicketingNetwork.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<byte>("Gender");
+                    b.Property<byte>("GenderEnum");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -115,6 +163,23 @@ namespace TransportTicketingNetwork.Database.Migrations
                         .IsUnique();
 
                     b.ToTable("Users","usm");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                });
+
+            modelBuilder.Entity("Common.Models.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<byte>("UserRoleEnum");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.Bus", b =>
@@ -135,15 +200,15 @@ namespace TransportTicketingNetwork.Database.Migrations
 
                     b.Property<int>("NoSeats");
 
-                    b.Property<string>("SubRouteId");
+                    b.Property<string>("RouteId");
 
-                    b.Property<int?>("SubRouteId1");
+                    b.Property<int?>("RouteId1");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BusScheduleId");
 
-                    b.HasIndex("SubRouteId1");
+                    b.HasIndex("RouteId1");
 
                     b.ToTable("Buses");
                 });
@@ -189,6 +254,36 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.ToTable("BusStop");
                 });
 
+            modelBuilder.Entity("Modules.Main.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApprovedUserId");
+
+                    b.Property<byte>("PaymentMethod");
+
+                    b.Property<string>("ReferenceNo")
+                        .IsRequired()
+                        .HasColumnType("CHAR(24)")
+                        .IsFixedLength(true);
+
+                    b.Property<DateTime>("TransactionDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApprovedUserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payment");
+                });
+
             modelBuilder.Entity("Modules.Main.Models.Route", b =>
                 {
                     b.Property<int>("Id")
@@ -197,40 +292,31 @@ namespace TransportTicketingNetwork.Database.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Distance");
+                    b.Property<int>("ExpressFare");
 
-                    b.Property<string>("StartBusStopId");
+                    b.Property<int>("NormalFare");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StartBusStopId");
 
                     b.ToTable("Routes");
                 });
 
-            modelBuilder.Entity("Modules.Main.Models.SubRoute", b =>
+            modelBuilder.Entity("Modules.Main.Models.UserExt", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("Common.Models.User");
 
-                    b.Property<int>("Distance");
 
-                    b.Property<string>("EndBusStopId");
+                    b.ToTable("UserExt");
 
-                    b.Property<int>("Fare");
+                    b.HasDiscriminator().HasValue("UserExt");
+                });
 
-                    b.Property<string>("RouteId");
-
-                    b.Property<int?>("RouteId1");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EndBusStopId");
-
-                    b.HasIndex("RouteId1");
-
-                    b.ToTable("SubRoute");
+            modelBuilder.Entity("Common.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Common.Models.UserRole", "UserRole")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("UserRoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Common.Models.ApplicationUserToken", b =>
@@ -238,6 +324,14 @@ namespace TransportTicketingNetwork.Database.Migrations
                     b.HasOne("Common.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("ApplicationUserTokens")
                         .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Common.Models.MultiPurposeTag", b =>
+                {
+                    b.HasOne("Common.Models.MultiPurposeTagType", "MultiPurposeTagType")
+                        .WithMany("MultiPurposeTags")
+                        .HasForeignKey("MultiPurposeTagTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -255,9 +349,9 @@ namespace TransportTicketingNetwork.Database.Migrations
                         .WithMany("AllocatedBus")
                         .HasForeignKey("BusScheduleId");
 
-                    b.HasOne("Modules.Main.Models.SubRoute", "SubRoute")
+                    b.HasOne("Modules.Main.Models.Route", "Route")
                         .WithMany()
-                        .HasForeignKey("SubRouteId1");
+                        .HasForeignKey("RouteId1");
                 });
 
             modelBuilder.Entity("Modules.Main.Models.BusSchedule", b =>
@@ -271,22 +365,17 @@ namespace TransportTicketingNetwork.Database.Migrations
                         .HasForeignKey("StartBusStopId");
                 });
 
-            modelBuilder.Entity("Modules.Main.Models.Route", b =>
+            modelBuilder.Entity("Modules.Main.Models.Payment", b =>
                 {
-                    b.HasOne("Modules.Main.Models.BusStop", "StartBusStop")
-                        .WithMany()
-                        .HasForeignKey("StartBusStopId");
-                });
+                    b.HasOne("Modules.Main.Models.UserExt", "ApprovedUser")
+                        .WithMany("ApprovedPayments")
+                        .HasForeignKey("ApprovedUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity("Modules.Main.Models.SubRoute", b =>
-                {
-                    b.HasOne("Modules.Main.Models.BusStop", "EndBusStop")
-                        .WithMany()
-                        .HasForeignKey("EndBusStopId");
-
-                    b.HasOne("Modules.Main.Models.Route", "Route")
-                        .WithMany()
-                        .HasForeignKey("RouteId1");
+                    b.HasOne("Modules.Main.Models.UserExt", "User")
+                        .WithMany("Payments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

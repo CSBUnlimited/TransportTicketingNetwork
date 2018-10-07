@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Common.Methods;
 using Common.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using TransportTicketingNetwork.Database.Seed;
 
 namespace TransportTicketingNetwork.Database
 {
@@ -22,6 +24,8 @@ namespace TransportTicketingNetwork.Database
 
             // Save changes and release resources
             context.SaveChanges();
+
+
         }
 
         /// <summary>
@@ -30,101 +34,44 @@ namespace TransportTicketingNetwork.Database
         /// <param name="context"></param>
         private static void SeedData(TransportTicketingNetworkDbContext context)
         {
-            if (context.Users.Any())
-                return;
+            Console.WriteLine("Please wait. Database seeding in progress...");
 
-            User newUser = new User()
+            using (IDbContextTransaction transaction = context.Database.BeginTransaction())
             {
-                FirstName = "Anonymous",
-                LastName = "Anonymous",
-                Gender = Gender.Male,
-                Email = "anonymous@anonymous.com",
-                Mobile = "xxxxxxxxxx",
-                ApplicationUser = new ApplicationUser()
+                try
                 {
-                    Username = "Anonymous",
-                    EffectiveDateTime = DateTime.UtcNow,
-                    ExpireDateTime = DateTime.UtcNow,
-                    IsBlocked = true,
-                    UserType = UserType.Unknown
-                }
-            };
-            AuthenticationMethods.CreatePasswordHashAndSalt("Anonymous", out byte[] passwordHash, out byte[] passwordSalt);
-            newUser.ApplicationUser.PasswordHash = passwordHash;
-            newUser.ApplicationUser.PasswordSalt = passwordSalt;
-            context.Users.Add(newUser);
+                    // Seed Multi Purpose Tag Types
+                    context.SeedMultiPurposeTagTypesData();
 
-            newUser = new User()
-            {
-                FirstName = "Chathuranga",
-                LastName = "Basnayake",
-                Gender = Gender.Male,
-                Email = "chathurangabasnayake@outlook.com",
-                Mobile = "0778511690",
-                ApplicationUser = new ApplicationUser()
-                {
-                    Username = "CSBUnlimited",
-                    UserType = UserType.Administrator
-                }
-            };
-            AuthenticationMethods.CreatePasswordHashAndSalt("5556", out passwordHash, out passwordSalt);
-            newUser.ApplicationUser.PasswordHash = passwordHash;
-            newUser.ApplicationUser.PasswordSalt = passwordSalt;
-            context.Users.Add(newUser);
+                    // Get All Multi Purpose Tag Types
+                    IEnumerable<MultiPurposeTagType> currentMultiPurposeTagTypes = context.MultiPurposeTagTypes.ToList();
 
-            newUser = new User()
-            {
-                FirstName = "Transport",
-                LastName = "Manager",
-                Gender = Gender.Male,
-                Email = "transport.manager@yahoo.com",
-                Mobile = "077xxxxxxx",
-                ApplicationUser = new ApplicationUser()
-                {
-                    Username = "TransportM",
-                    UserType = UserType.TransportManager
-                }
-            };
-            AuthenticationMethods.CreatePasswordHashAndSalt("user1", out passwordHash, out passwordSalt);
-            newUser.ApplicationUser.PasswordHash = passwordHash;
-            newUser.ApplicationUser.PasswordSalt = passwordSalt;
-            context.Users.Add(newUser);
+                    // Seed Multi Purpose Tags
+                    context.SeedMultiPurposeTagsData(currentMultiPurposeTagTypes);
 
-            newUser = new User()
-            {
-                FirstName = "David",
-                LastName = "Beckham",
-                Gender = Gender.Male,
-                Email = "david.beckham@gmail.com",
-                Mobile = "1254987454665",
-                ApplicationUser = new ApplicationUser()
-                {
-                    Username = "112233445566778899",
-                    UserType = UserType.ForeignCustomer
-                }
-            };
-            AuthenticationMethods.CreatePasswordHashAndSalt("david", out passwordHash, out passwordSalt);
-            newUser.ApplicationUser.PasswordHash = passwordHash;
-            newUser.ApplicationUser.PasswordSalt = passwordSalt;
-            context.Users.Add(newUser);
+                    // Get All Multi Purpose Tags
+                    IEnumerable<MultiPurposeTag> currentMultiPurposeTags = context.MultiPurposeTags.ToList();
 
-            newUser = new User()
-            {
-                FirstName = "Kavi",
-                LastName = "Suchi",
-                Gender = Gender.Female,
-                Email = "kavi.suchi@gmail.com",
-                Mobile = "071xxxxxxx",
-                ApplicationUser = new ApplicationUser()
-                {
-                    Username = "961120570v",
-                    UserType = UserType.LocalCustomer
+                    // Seed User Roles
+                    context.SeedUserRolesData();
+
+                    // Get All User Roles
+                    IEnumerable<UserRole> currentUserRoles = context.UserRoles.ToList();
+
+                    // Seed Users
+                    context.SeedUsersData(currentUserRoles);
+
+                    transaction.Commit();
                 }
-            };
-            AuthenticationMethods.CreatePasswordHashAndSalt("kavee", out passwordHash, out passwordSalt);
-            newUser.ApplicationUser.PasswordHash = passwordHash;
-            newUser.ApplicationUser.PasswordSalt = passwordSalt;
-            context.Users.Add(newUser);
+                catch
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Database seeding failed.");
+                    throw;
+                }
+            }
+
+            Console.WriteLine("Database seeding completed...");
         }
     }
 }

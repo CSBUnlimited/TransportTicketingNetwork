@@ -5,7 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TableConfigurations\JNY\**" />
+    <EmbeddedResource Remove="TableConfigurations\JNY\**" />
+    <None Remove="TableConfigurations\JNY\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180924050515_InitialMigration.cs" />
     <Compile Remove="Migrations\20180924054302_AddUSMSchema.cs" />
+    <Compile Remove="Migrations\20180924054443_AddUSMSchema.cs" />
+    <Compile Remove="Migrations\20180925031829_FixExpireDateTimeIssue.cs" />
+    <Compile Remove="Migrations\20180926080123_ApplicationUserUpdated.cs" />
+    <Compile Remove="Migrations\20180927025604_SessionHashToIndex.cs" />
+    <Compile Remove="Migrations\20180930235347_UpdateChanges10_01.cs" />
+    <Compile Remove="Migrations\20181006041008_UserExtModelAdded.cs" />
+    <Compile Remove="Migrations\20181006042009_TestUserExtModelAdded.cs" />
+    <Compile Remove="Migrations\20181006130706_USMStructerChanges.cs" />
+    <Compile Remove="Migrations\20181006132027_USMStructerChanges.cs" />
+    <Compile Remove="Migrations\20181006133935_InitialMigration.cs" />
+    <Compile Remove="Migrations\20181006135118_AddPayamentAndUSMChanges.cs" />
+    <Compile Remove="Migrations\20181006135411_AddPayamentAndUSMChanges.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +45,6 @@
     <ProjectReference Include="..\Common.Models\Common.Models.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
     <ProjectReference Include="..\Utilities.Logging.Extensions\Utilities.Logging.Extensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TableConfigurations\JNY\" />
   </ItemGroup>
 
 </Project>

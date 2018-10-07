@@ -12,7 +12,9 @@ namespace Common.Models
         public DateTime EffectiveDateTime { get; set; }
         public DateTime ExpireDateTime { get; set; }
         public bool IsBlocked { get; set; }
-        public UserType UserType { get; set; }
+
+        public int UserRoleId { get; set; }
+        public UserRole UserRole { get; set; }
 
         public User User { get; set; }
 
@@ -24,12 +26,5 @@ namespace Common.Models
         }
     }
 
-    public enum UserType : byte
-    {
-        Unknown = 0,
-        ForeignCustomer = 1,
-        LocalCustomer = 2,
-        TransportManager = 5,
-        Administrator = 7
-    }
+    
 }

@@ -20,7 +20,7 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.USM
 
             builder.HasOne(au => au.ApplicationUser).WithMany(aut => aut.ApplicationUserTokens)
                 .HasForeignKey(au => au.ApplicationUserId)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Common.Methods
                     new Claim(ClaimTypes.NameIdentifier, sessionHash),
                     new Claim(TokenClaimTypes.FirstName, user.FirstName),
                     new Claim(TokenClaimTypes.LastName, user.LastName),
-                    new Claim(TokenClaimTypes.Gender, user.Gender == Gender.Male ? "Male" : "Female"),
+                    new Claim(TokenClaimTypes.Gender, Enum.GetName(typeof(GenderEnum), user.GenderEnum)),
                     new Claim(TokenClaimTypes.IssuedAt, issueDateTime.ToString("yyyy-MM-dd HH:mm:ss.ffffzzz")),
                     new Claim(TokenClaimTypes.ExpireAt, expireDateTime.ToString("yyyy-MM-dd HH:mm:ss.ffffzzz"))
                 }),
