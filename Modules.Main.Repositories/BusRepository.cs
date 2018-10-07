@@ -22,6 +22,11 @@ namespace Modules.Main.Repositories
         {
             DbContext = dbContext;
         }
+
+        public async Task<Bus> GetBus(string busNumber)
+        {
+            return await DbContext.Buses.FindAsync(busNumber);
+        }
         public async Task<IEnumerable<Bus>> GetBusList()
         {
             return await DbContext.Buses.ToListAsync();
@@ -29,8 +34,17 @@ namespace Modules.Main.Repositories
 
         public async Task AddBus(Bus bus)
         {
-            await DbContext.AddAsync(bus);
+            await DbContext.Buses.AddAsync(bus);
         }
+
+       
+        public void DeleteBus(Bus bus)
+        {
+            DbContext.Buses.Remove(bus);
+        }
+
+        //Update
+        //Search
 
 
     }

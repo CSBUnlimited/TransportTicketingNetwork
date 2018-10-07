@@ -35,5 +35,16 @@ namespace Modules.Main.Services
 
             return _mapper.Map<BusViewModel>(bus);
         }
+
+        public async Task<BusViewModel> DeleteBus(string busNumber)
+        {
+            Bus bus = await _mainUnitOfWork.BusRepository.GetBus(busNumber);
+
+            _mainUnitOfWork.BusRepository.DeleteBus(bus);
+
+            return _mapper.Map<BusViewModel>(bus);
+        }
+
+       
     }
 }

@@ -63,6 +63,27 @@
             <param name="busRequest">FromBody - UserRequest</param>
             <returns>BusResponse</returns>
         </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.BusScheduleController">
+            <summary>
+            BusSchedules Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusScheduleController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.BusScheduleController},Modules.Main.Core.Services.IBusScheduleService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger injection</param>
+            <param name="busScheduleService">BusSchedule Service</param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusScheduleController.GetBusScheduleList">
+            <summary>
+            This end point have a NullReferenceException which is inner exception.
+            Outer exception is an ArgumentException.
+            </summary>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
             <summary>
             This is for get the journey locations

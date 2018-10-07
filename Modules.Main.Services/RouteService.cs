@@ -19,7 +19,7 @@ namespace Modules.Main.Services
         public RouteService(IMainUnitOfWork mainUnitOfWork, IMapper mapper) {
             _mainUnitOfWork = mainUnitOfWork;
 
-
+            _mapper = mapper;
         }
         //Overide The AddRoute Method
         public async Task<RouteViewModel> AddRoute(RouteViewModel routes)

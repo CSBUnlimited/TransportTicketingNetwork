@@ -25,6 +25,7 @@
     <Compile Remove="Migrations\20181006133935_InitialMigration.cs" />
     <Compile Remove="Migrations\20181006135118_AddPayamentAndUSMChanges.cs" />
     <Compile Remove="Migrations\20181006135411_AddPayamentAndUSMChanges.cs" />
+    <Compile Remove="Migrations\20181007131752_BusSet.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +46,10 @@
     <ProjectReference Include="..\Common.Models\Common.Models.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
     <ProjectReference Include="..\Utilities.Logging.Extensions\Utilities.Logging.Extensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

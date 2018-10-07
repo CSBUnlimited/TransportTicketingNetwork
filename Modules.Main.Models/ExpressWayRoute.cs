@@ -6,11 +6,13 @@ namespace Modules.Main.Models
 {
     public class ExpressWayRoute: Route
     {
-        public string StartLocation { get; set; }
+        public BusStop StartLocation { get; set; }
 
-        public string EndLocation { get; set; }
+        public BusStop EndLocation { get; set; }
 
         public float Distance { get; set; }
+
+        public int Fare { get; set; }
 
     }
 }

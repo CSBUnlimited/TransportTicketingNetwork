@@ -6,6 +6,7 @@
 
 /.vs
 /.vscode
+*/.idea
 
 # Exclude log files
 
@@ -15,6 +16,7 @@
 
 */bin
 */obj
+/TransportTicketingNetwork.Database/Migrations
 
 # Frontend Projects
 

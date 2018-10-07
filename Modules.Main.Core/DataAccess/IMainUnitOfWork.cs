@@ -14,6 +14,7 @@ namespace Modules.Main.Core.DataAccess
         IBusRepository BusRepository { get; }
         IRouteRepository RouteRepository { get; }
         IBusScheduleRepository BusScheduleRepository { get; }
+        IJourneyRepository JourneyRepository { get; }
 
 
         #endregion
