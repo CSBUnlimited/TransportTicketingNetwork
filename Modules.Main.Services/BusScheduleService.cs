@@ -29,6 +29,45 @@ namespace Modules.Main.Services
             return _mapper.Map<IEnumerable<BusScheduleViewModel>>(busSchedules);
         }
 
+        public async Task<BusScheduleViewModel> AddBusScheduleAsync(BusScheduleViewModel busSchedules)
+        {
+            BusSchedule busSchedule = _mapper.Map<BusSchedule>(busSchedules);
 
+            await _mainUnitOfWork.BusScheduleRepository.AddBusSchedule(busSchedule);
+
+            return _mapper.Map<BusScheduleViewModel>(busSchedule);
+        }
+
+        public async Task<BusScheduleViewModel> DeleteBusScheduleAsync(int id)
+        {
+            BusSchedule busSchedule = await _mainUnitOfWork.BusScheduleRepository.GetBusSchedule(id);
+
+            _mainUnitOfWork.BusScheduleRepository.DeleteBusSchedule(busSchedule);
+
+            return _mapper.Map<BusScheduleViewModel>(busSchedule);
+        }
+
+        public async Task<BusScheduleViewModel> UpdateBusScheduleAsync(int id, BusScheduleViewModel updatedBusSchedule)
+        {
+            //Changes
+            BusSchedule mUpdatedBusSchedule = _mapper.Map<BusSchedule>(updatedBusSchedule);
+
+            BusSchedule busSchedule = await _mainUnitOfWork.BusScheduleRepository.GetBusSchedule(mUpdatedBusSchedule.Id);
+
+            busSchedule.Id = mUpdatedBusSchedule.Id;
+            busSchedule.StartingPoint = mUpdatedBusSchedule.StartingPoint;
+            busSchedule.Destination = mUpdatedBusSchedule.Destination;
+            busSchedule.StartTime = mUpdatedBusSchedule.StartTime;
+            busSchedule.EndTime = mUpdatedBusSchedule.EndTime;
+            busSchedule.TotalDuration = mUpdatedBusSchedule.TotalDuration;
+            busSchedule.StartBusStop = mUpdatedBusSchedule.StartBusStop;
+            busSchedule.EndBusStop = mUpdatedBusSchedule.EndBusStop;
+            busSchedule.AllocatedBus = mUpdatedBusSchedule.AllocatedBus;
+           
+
+            _mainUnitOfWork.BusScheduleRepository.UpdateBusSchedule(busSchedule);
+
+            return _mapper.Map<BusScheduleViewModel>(busSchedule);
+        }
     }
 }

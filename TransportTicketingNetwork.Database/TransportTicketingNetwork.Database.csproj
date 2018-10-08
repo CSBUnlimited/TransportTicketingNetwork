@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20180924054302_AddUSMSchema.cs" />
+    <Compile Remove="Migrations\20181007131752_BusSet.cs" />
+    <Compile Remove="Migrations\20181008041633_BusTypeSet.cs" />
   </ItemGroup>
 
   <ItemGroup>
