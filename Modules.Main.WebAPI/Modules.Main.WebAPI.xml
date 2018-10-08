@@ -110,6 +110,25 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.BusStopController">
+            <summary>
+            BusStop Controller
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusStopController.#ctor(Modules.Main.Core.Services.IBusStopService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="busstopService"></param>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusStopController.AddBusStop(Modules.Main.DTOs.BusStop.BusStopRequest)">
+            <summary>
+            BusStop Async
+            </summary>
+            <param name="busStopRequest"></param>
+            <returns></returns>
+        </member>
         <member name="T:Modules.Main.WebAPI.Controllers.JourneysController">
             <summary>
             This is for Journey Addition
@@ -199,7 +218,7 @@
             Route Controller
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.RouteController},Modules.Main.Core.Services.IRouteService)">
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Modules.Main.Core.Services.IRouteService)">
             <summary>
             Constructor
             </summary>
