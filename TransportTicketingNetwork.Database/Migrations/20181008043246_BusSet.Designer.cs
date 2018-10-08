@@ -10,7 +10,7 @@ using TransportTicketingNetwork.Database;
 namespace TransportTicketingNetwork.Database.Migrations
 {
     [DbContext(typeof(TransportTicketingNetworkDbContext))]
-    [Migration("20181007131752_BusSet")]
+    [Migration("20181008043246_BusSet")]
     partial class BusSet
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

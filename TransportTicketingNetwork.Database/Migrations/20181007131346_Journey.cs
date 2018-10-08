@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TransportTicketingNetwork.Database.Migrations
 {
-    public partial class BusSet : Migration
+    public partial class Journey : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

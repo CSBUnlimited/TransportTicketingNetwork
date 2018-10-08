@@ -10,8 +10,7 @@ namespace Modules.Main.Core.Repositories
 {
     public interface IJourneyRepository : IRepository
     {
-       // Task<IEnumerable<Journey>> GetLocations(Journey journey);
-
-        Task AddJourney(Journey journey);
+        Task<IEnumerable<Journey>> GetJourneyList();
+        Task AddJourneys(Journey journey);
     }
 }

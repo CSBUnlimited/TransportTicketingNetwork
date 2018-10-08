@@ -13,6 +13,9 @@ using Utilities.Exception.Models;
 
 namespace Modules.Main.WebAPI.Controllers
 {
+    /// <summary>
+    /// This is for Journey Addition
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -21,24 +24,47 @@ namespace Modules.Main.WebAPI.Controllers
         private readonly ILogger<JourneysController> _logger;
         private readonly IJourneyService _journeyService;
 
-        public JourneysController(IJourneyService service)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="service"></param>
+        public JourneysController(ILogger<JourneysController> logger, IJourneyService service)
         {
             _journeyService = service;
+            _logger = logger;
         }
         /// <summary>
         /// This is for get the journey locations
         /// </summary>
         /// <returns></returns>
-        [HttpGet(Name = "GetJourneyLocation")]
+        [HttpGet(Name = "GetJourneyList")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetJourneyLocation()
+        public async Task<IActionResult> GetJourneyList()
         {
             JourneyResponse response = new JourneyResponse();
+
+            try
+            {
+                response.JourneyViewModels = await _journeyService.GetJourneyListAsync();
+                response.IsSuccess = true;
+            }
+            catch(Exception ex)
+            {
+                // This line will throw a ArgumentException
+                throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
             
             return StatusCode(response.Status, response);
         }
 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="journeyRequest"></param>
+        /// <returns></returns>
         [HttpPost("AddJourney")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

@@ -47,9 +47,18 @@
             <param name="logger">Logger injection</param>
             <param name="busService">Bus Service</param>
         </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.GetBus(System.String)">
+            <summary>
+            Get Bus Async
+            </summary>
+            <param name="id">FromRoute- busNumber</param>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.BusController.GetBusList">
             <summary>
-            This end point have a NullReferenceException which is inner exception.
+            Get Bus List Async
             Outer exception is an ArgumentException.
             </summary>
             <returns>BusResponse</returns>
@@ -58,9 +67,26 @@
         </member>
         <member name="M:Modules.Main.WebAPI.Controllers.BusController.AddBus(Modules.Main.DTOs.Bus.BusRequest)">
             <summary>
-            Login UserAsync - Async
+            Add Bus - Async
             </summary>
-            <param name="busRequest">FromBody - UserRequest</param>
+            <param name="busRequest">FromBody - BusRequest</param>
+            <returns>BusResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.DeleteBus(System.String)">
+            <summary>
+            Delete Bus 
+            </summary>
+            <param name="id">FromRoute - busNumber</param>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.UpdateBus(System.String,Modules.Main.DTOs.Bus.BusRequest)">
+            <summary>
+            Update Bus - Async
+            </summary>
+            <param name="id">FromRoute - id</param>
+            <param name="busRequest">FromBody - Bus Request</param>
             <returns>BusResponse</returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.BusScheduleController">
@@ -84,29 +110,29 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
-        <member name="T:Modules.Main.WebAPI.Controllers.BusStopController">
+        <member name="T:Modules.Main.WebAPI.Controllers.JourneysController">
             <summary>
-            BusStop Controller
+            This is for Journey Addition
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.BusStopController.#ctor(Modules.Main.Core.Services.IBusStopService)">
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.JourneysController},Modules.Main.Core.Services.IJourneyService)">
             <summary>
-            Constructor
+            
             </summary>
             <param name="logger"></param>
-            <param name="busstopService"></param>
+            <param name="service"></param>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.BusStopController.AddBusStop(Modules.Main.DTOs.BusStop.BusStopRequest)">
-            <summary>
-            BusStop Async
-            </summary>
-            <param name="busStopRequest"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyLocation">
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyList">
             <summary>
             This is for get the journey locations
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.AddJourney(Modules.Main.DTOs.Journey.JourneyRequest)">
+            <summary>
+            
+            </summary>
+            <param name="journeyRequest"></param>
             <returns></returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
@@ -173,7 +199,7 @@
             Route Controller
             </summary>
         </member>
-        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Modules.Main.Core.Services.IRouteService)">
+        <member name="M:Modules.Main.WebAPI.Controllers.RouteController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.RouteController},Modules.Main.Core.Services.IRouteService)">
             <summary>
             Constructor
             </summary>

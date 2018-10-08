@@ -9,7 +9,10 @@ namespace Modules.Main.Core.Services
 {
     public interface IBusService: IService 
     {
-      
+
+        //Get Bus By Bus Number
+        Task<BusViewModel> GetBusAsync(string busNumber);
+
         //Getting all the Buses
         Task<IEnumerable<BusViewModel>> GetBusListAsync();
 
@@ -17,7 +20,14 @@ namespace Modules.Main.Core.Services
         Task<BusViewModel> AddBusAsync(BusViewModel buses);
 
         //Deleting a Bus
-        Task<BusViewModel> DeleteBus(string busNumber); 
+        Task<BusViewModel> DeleteBus(string busNumber);
+
+        //Updating a Bus
+        Task<BusViewModel> UpdateBusAsync(string busNumber, BusViewModel updatedBus);
+
+        //Searching By Keyword
+
+     
     }
 
 }
