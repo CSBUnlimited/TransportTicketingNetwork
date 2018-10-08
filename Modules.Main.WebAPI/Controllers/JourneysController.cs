@@ -13,6 +13,9 @@ using Utilities.Exception.Models;
 
 namespace Modules.Main.WebAPI.Controllers
 {
+    /// <summary>
+    /// This is for Journey Addition
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -21,9 +24,15 @@ namespace Modules.Main.WebAPI.Controllers
         private readonly ILogger<JourneysController> _logger;
         private readonly IJourneyService _journeyService;
 
-        public JourneysController(IJourneyService service)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="service"></param>
+        public JourneysController(ILogger<JourneysController> logger, IJourneyService service)
         {
             _journeyService = service;
+            _logger = logger;
         }
         /// <summary>
         /// This is for get the journey locations
@@ -50,12 +59,12 @@ namespace Modules.Main.WebAPI.Controllers
             return StatusCode(response.Status, response);
         }
 
-        [HttpGet(Name = "GetRouteList")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="journeyRequest"></param>
+        /// <returns></returns>
         [HttpPost("AddJourney")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

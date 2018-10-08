@@ -110,10 +110,29 @@
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
         </member>
+        <member name="T:Modules.Main.WebAPI.Controllers.JourneysController">
+            <summary>
+            This is for Journey Addition
+            </summary>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.#ctor(Microsoft.Extensions.Logging.ILogger{Modules.Main.WebAPI.Controllers.JourneysController},Modules.Main.Core.Services.IJourneyService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="service"></param>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.GetJourneyList">
             <summary>
             This is for get the journey locations
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.JourneysController.AddJourney(Modules.Main.DTOs.Journey.JourneyRequest)">
+            <summary>
+            
+            </summary>
+            <param name="journeyRequest"></param>
             <returns></returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.LogTestingsController">
