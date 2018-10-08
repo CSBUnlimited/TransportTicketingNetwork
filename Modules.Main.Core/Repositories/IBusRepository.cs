@@ -35,6 +35,12 @@ namespace Modules.Main.Core.Repositories
         /// <returns></returns>
         void DeleteBus(Bus bus);
 
+        /// <summary>
+        /// Update Bus
+        /// </summary>
+        /// <returns></returns>
+        void UpdateBus(Bus bus);
+
 
 
 

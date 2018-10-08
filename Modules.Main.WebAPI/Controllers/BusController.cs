@@ -38,6 +38,7 @@ namespace Modules.Main.WebAPI.Controllers
         /// <summary>
         /// Get Bus Async
         /// </summary>
+        /// <param name="id">FromRoute- busNumber</param>
         /// <returns>BusResponse</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Bad request by client</response>
@@ -46,7 +47,7 @@ namespace Modules.Main.WebAPI.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetBus([FromRoute] string id)
         {
-            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "GetBus")]  || string busNumber = id;
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "GetBus")]  || string busNumber = id; || <param name="id">FromRoute- busNumber</param>
             string busNumber = id;
             BusResponse response = new BusResponse();
             
@@ -100,7 +101,7 @@ namespace Modules.Main.WebAPI.Controllers
         /// <summary>
         /// Add Bus - Async
         /// </summary>
-        /// <param name="busRequest">FromBody - UserRequest</param>
+        /// <param name="busRequest">FromBody - BusRequest</param>
         /// <returns>BusResponse</returns>
         [HttpPost(Name = "AddBus")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -130,8 +131,9 @@ namespace Modules.Main.WebAPI.Controllers
 
 
         /// <summary>
-        /// De;ete Bus 
+        /// Delete Bus 
         /// </summary>
+        /// <param name="id">FromRoute - busNumber</param>
         /// <returns>BusResponse</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Bad request by client</response>
@@ -140,7 +142,7 @@ namespace Modules.Main.WebAPI.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> DeleteBus([FromRoute] string id)
         {
-            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "DeleteBus")]  || string busNumber = id;
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "DeleteBus")]  || string busNumber = id;|| <param name="id">FromRoute - busNumber</param>
             string busNumber = id;
             BusResponse response = new BusResponse();
 
@@ -159,6 +161,42 @@ namespace Modules.Main.WebAPI.Controllers
             return StatusCode(response.Status, response);
         }
 
+        /// <summary>
+        /// Update Bus - Async
+        /// </summary>
+        /// <param name="id">FromRoute - id</param>
+        /// <param name="busRequest">FromBody - Bus Request</param>
+        /// <returns>BusResponse</returns>
+        [HttpPut(Name = "UpdateBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UpdateBus([FromRoute] string id,[FromBody]BusRequest busRequest)
+        {
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "DeleteBus")]  || string busNumber = id;
+            /*
+             /// <param name="id">FromRoute - id</param>
+             /// <param name="busRequest">FromBody - Bus Request</param>
+             */
+            BusResponse response = new BusResponse();
+
+            try
+            {
+
+                response.BusViewModels = new List<BusViewModel>();
+
+                {
+                    await _busService.AddBusAsync(busRequest.BusViewModel);
+                };
+
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw new GlobalException(ex, response);
+            }
+
+            return StatusCode(response.Status, response);
+        }
 
     }
 }

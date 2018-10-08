@@ -20,7 +20,14 @@ namespace Modules.Main.Core.Services
         Task<BusViewModel> AddBusAsync(BusViewModel buses);
 
         //Deleting a Bus
-        Task<BusViewModel> DeleteBus(string busNumber); 
+        Task<BusViewModel> DeleteBus(string busNumber);
+
+        //Updating a Bus
+        Task<BusViewModel> UpdateBusAsync(string busNumber, BusViewModel updatedBus);
+
+        //Searching By Keyword
+
+     
     }
 
 }

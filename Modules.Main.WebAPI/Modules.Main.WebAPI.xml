@@ -51,6 +51,7 @@
             <summary>
             Get Bus Async
             </summary>
+            <param name="id">FromRoute- busNumber</param>
             <returns>BusResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
@@ -68,16 +69,25 @@
             <summary>
             Add Bus - Async
             </summary>
-            <param name="busRequest">FromBody - UserRequest</param>
+            <param name="busRequest">FromBody - BusRequest</param>
             <returns>BusResponse</returns>
         </member>
         <member name="M:Modules.Main.WebAPI.Controllers.BusController.DeleteBus(System.String)">
             <summary>
-            De;ete Bus 
+            Delete Bus 
             </summary>
+            <param name="id">FromRoute - busNumber</param>
             <returns>BusResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request by client</response>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.UpdateBus(System.String,Modules.Main.DTOs.Bus.BusRequest)">
+            <summary>
+            Update Bus - Async
+            </summary>
+            <param name="id">FromRoute - id</param>
+            <param name="busRequest">FromBody - Bus Request</param>
+            <returns>BusResponse</returns>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.BusScheduleController">
             <summary>
