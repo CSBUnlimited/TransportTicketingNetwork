@@ -25,11 +25,38 @@ namespace Modules.Main.Repositories
             DbContext = dbContext;
         }
 
+        public async Task<BusSchedule> GetBusSchedule(int id)
+        {
+            return await DbContext.BusSchedules.FindAsync(id);
+        }
+
+        public async Task<BusSchedule> GetBusScheduleByStartingPoint(string startingPoint)
+        {
+            return await DbContext.BusSchedules.FindAsync(startingPoint);
+        }
+
         public async Task<IEnumerable<BusSchedule>> GetBusScheduleList()
         {
             return await DbContext.BusSchedules.ToListAsync();
         }
 
+        
 
+        public async Task AddBusSchedule(BusSchedule busSchedule)
+        {
+            await DbContext.BusSchedules.AddAsync(busSchedule);
+        }
+
+        public void DeleteBusSchedule(BusSchedule busSchedule)
+        {
+            DbContext.BusSchedules.Remove(busSchedule);
+        }
+
+        public void UpdateBusSchedule(BusSchedule busSchedule)
+        {
+            DbContext.BusSchedules.Update(busSchedule);
+        }
+
+       
     }
 }

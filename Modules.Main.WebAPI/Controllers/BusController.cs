@@ -33,8 +33,43 @@ namespace Modules.Main.WebAPI.Controllers
             _busService = busService;
         }
 
+
+
         /// <summary>
-        /// This end point have a NullReferenceException which is inner exception.
+        /// Get Bus Async
+        /// </summary>
+        /// <param name="id">FromRoute- busNumber</param>
+        /// <returns>BusResponse</returns>
+        /// <response code="200">Success</response>
+        /// <response code="400">Bad request by client</response>
+        [HttpGet("{id}", Name = "GetBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetBus([FromRoute] string id)
+        {
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "GetBus")]  || string busNumber = id; || <param name="id">FromRoute- busNumber</param>
+            string busNumber = id;
+            BusResponse response = new BusResponse();
+            
+            try
+            {
+                response.BusViewModel = await _busService.GetBusAsync(busNumber);
+                response.IsSuccess = true;
+
+            }
+            catch (Exception ex)
+            {
+                // This line will throw a ArgumentException Changes - Add a Valid Exception
+                throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
+
+            return StatusCode(response.Status, response);
+        }
+
+
+
+        /// <summary>
+        /// Get Bus List Async
         /// Outer exception is an ArgumentException.
         /// </summary>
         /// <returns>BusResponse</returns>
@@ -64,9 +99,9 @@ namespace Modules.Main.WebAPI.Controllers
 
 
         /// <summary>
-        /// Login UserAsync - Async
+        /// Add Bus - Async
         /// </summary>
-        /// <param name="busRequest">FromBody - UserRequest</param>
+        /// <param name="busRequest">FromBody - BusRequest</param>
         /// <returns>BusResponse</returns>
         [HttpPost(Name = "AddBus")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -95,6 +130,73 @@ namespace Modules.Main.WebAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Delete Bus 
+        /// </summary>
+        /// <param name="id">FromRoute - busNumber</param>
+        /// <returns>BusResponse</returns>
+        /// <response code="200">Success</response>
+        /// <response code="400">Bad request by client</response>
+        [HttpDelete("{id}", Name = "DeleteBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> DeleteBus([FromRoute] string id)
+        {
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "DeleteBus")]  || string busNumber = id;|| <param name="id">FromRoute - busNumber</param>
+            string busNumber = id;
+            BusResponse response = new BusResponse();
+
+            try
+            {
+                response.BusViewModel = await _busService.DeleteBus(busNumber);
+                response.IsSuccess = true;
+
+            }
+            catch (Exception ex)
+            {
+                // This line will throw a ArgumentException Changes - Add a Valid Exception
+                throw new ArgumentException("This is a test Argument Exception.", ex);
+            }
+
+            return StatusCode(response.Status, response);
+        }
+
+        /// <summary>
+        /// Update Bus - Async
+        /// </summary>
+        /// <param name="id">FromRoute - id</param>
+        /// <param name="busRequest">FromBody - Bus Request</param>
+        /// <returns>BusResponse</returns>
+        [HttpPut(Name = "UpdateBus")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UpdateBus([FromRoute] string id,[FromBody]BusRequest busRequest)
+        {
+            //Changes - FromRoute  string id ||  [HttpGet("{id}", Name = "DeleteBus")]  || string busNumber = id;
+            /*
+             /// <param name="id">FromRoute - id</param>
+             /// <param name="busRequest">FromBody - Bus Request</param>
+             */
+            BusResponse response = new BusResponse();
+
+            try
+            {
+
+                response.BusViewModels = new List<BusViewModel>();
+
+                {
+                    await _busService.AddBusAsync(busRequest.BusViewModel);
+                };
+
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw new GlobalException(ex, response);
+            }
+
+            return StatusCode(response.Status, response);
+        }
 
     }
 }

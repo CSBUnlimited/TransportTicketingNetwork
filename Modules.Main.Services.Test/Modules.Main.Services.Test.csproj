@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
     <ProjectReference Include="..\Modules.Main.Services\Modules.Main.Services.csproj" />
     <ProjectReference Include="..\Modules.Main.ViewModels\Modules.Main.ViewModels.csproj" />
+    <ProjectReference Include="..\Modules.Main.WebAPI\Modules.Main.WebAPI.csproj" />
     <ProjectReference Include="..\Utilities.Authorization.Core\Utilities.Authorization.Core.csproj" />
   </ItemGroup>
 

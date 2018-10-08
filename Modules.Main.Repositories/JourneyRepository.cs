@@ -6,6 +6,7 @@ using TransportTicketingNetwork.Database;
 using Common.Base.Repositories;
 using Modules.Main.Models;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Modules.Main.Repositories
 {
@@ -18,14 +19,13 @@ namespace Modules.Main.Repositories
 
         }
 
-        public Task GetLocations(Journey journey)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task AddJourney(Journey journey)
+        public async Task AddJourneys(Journey journey)
         {
             await _dbContext.Journeys.AddAsync(journey);
+        }
+        public async Task<IEnumerable<Journey>> GetJourneyList()
+        {
+            return await _dbContext.Journeys.ToListAsync();
         }
     }
 }

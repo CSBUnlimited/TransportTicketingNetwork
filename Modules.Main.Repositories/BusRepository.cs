@@ -44,7 +44,16 @@ namespace Modules.Main.Repositories
         }
 
         //Update
+        public void UpdateBus(Bus bus)
+        {
+            DbContext.Buses.Update(bus);
+        }
+
         //Search
+        //public async Task<IEnumerable<Bus>> SearchBus(string keyword)
+        //{
+        //    await DbContext.Buses.ContainsAsync(keyword);
+        //}
 
 
     }

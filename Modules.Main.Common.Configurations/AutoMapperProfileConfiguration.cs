@@ -24,6 +24,8 @@ namespace Modules.Main.Common.Configurations
                 .ForMember(uvm => uvm.Gender, opt => opt.MapFrom(u => Enum.GetName(typeof(GenderEnum), u.GenderEnum)));
             CreateMap<UserExt, UserExtViewModel>()
                 .ForMember(uvm => uvm.Gender, opt => opt.MapFrom(u => Enum.GetName(typeof(GenderEnum), u.GenderEnum)));
+            CreateMap<BusStop, BusStopViewModel>();
+
         }
 
         private void CreateMapViewModelsToModels()
@@ -36,6 +38,8 @@ namespace Modules.Main.Common.Configurations
                 .ForMember(u => u.GenderEnum, opt => opt.MapFrom(uvm => (GenderEnum)Enum.Parse(typeof(GenderEnum), uvm.Gender)));
             CreateMap<UserExtViewModel, UserExt>()
                 .ForMember(u => u.GenderEnum, opt => opt.MapFrom(uvm => (GenderEnum)Enum.Parse(typeof(GenderEnum), uvm.Gender)));
+            CreateMap<BusStopViewModel, BusStop>();
+
         }
     }
 }
