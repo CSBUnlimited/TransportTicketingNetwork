@@ -11,7 +11,5 @@ namespace Modules.Main.Models
         public IEnumerable<float> DistanceList { get; set; }
 
         public IEnumerable<int> ExpressFareList { get; set; }
-
-        public IEnumerable<int> NormalFareList { get; set; }
     }
 }

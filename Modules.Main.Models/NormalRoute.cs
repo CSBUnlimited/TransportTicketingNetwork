@@ -8,7 +8,7 @@ namespace Modules.Main.Models
     {
         public IEnumerable<BusStop> BusStopIdList { get; set; }
 
-        public IEnumerable<float> DistanceList { get; set; }
+        public IEnumerable<double> DistanceList { get; set; }
 
         public IEnumerable<int> ExpressFareList { get; set; }
 

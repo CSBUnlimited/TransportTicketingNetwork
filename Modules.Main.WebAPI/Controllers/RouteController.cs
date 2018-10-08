@@ -31,8 +31,8 @@ namespace Modules.Main.WebAPI.Controllers
         /// </summary>
         /// <param name="logger">Logger injection</param>
         /// <param name="routeService">Route Service</param>
-        public RouteController(ILogger<RouteController> logger,IRouteService routeService) {
-            _logger = logger;
+        public RouteController(IRouteService routeService) {
+            //_logger = logger;
             _routeService = routeService;
         }
         

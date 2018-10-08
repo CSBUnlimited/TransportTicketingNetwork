@@ -10,7 +10,7 @@ namespace Modules.Main.Models
 
         public BusStop EndLocation { get; set; }
 
-        public float Distance { get; set; }
+        public double Distance { get; set; }
 
         public int Fare { get; set; }
 
