@@ -20,6 +20,8 @@ namespace Modules.Main.Services
         {
             _mainUnitOfWork = mainUnitOfWork;
 
+            _mapper = mapper;
+
 
         }
         //Overide The AddJourney Method
@@ -27,9 +29,19 @@ namespace Modules.Main.Services
         {
             Journey journey = _mapper.Map<Journey>(journeys);
 
-            await _mainUnitOfWork.JourneyRepository.AddJourney(journey);
+            await _mainUnitOfWork.JourneyRepository.AddJourneys(journey);
 
             return _mapper.Map<JourneyViewModel>(journey);
         }
+
+        public async Task<IEnumerable<JourneyViewModel>> GetJourneyListAsync()
+        {
+            IEnumerable<Journey> journeys = await _mainUnitOfWork.JourneyRepository.GetJourneyList();
+
+            return _mapper.Map<IEnumerable<JourneyViewModel>>(journeys);
+        }
+
+
+
     }
 }
