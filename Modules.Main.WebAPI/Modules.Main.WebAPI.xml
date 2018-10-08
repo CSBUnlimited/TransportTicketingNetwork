@@ -47,9 +47,17 @@
             <param name="logger">Logger injection</param>
             <param name="busService">Bus Service</param>
         </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.GetBus(System.String)">
+            <summary>
+            Get Bus Async
+            </summary>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
+        </member>
         <member name="M:Modules.Main.WebAPI.Controllers.BusController.GetBusList">
             <summary>
-            This end point have a NullReferenceException which is inner exception.
+            Get Bus List Async
             Outer exception is an ArgumentException.
             </summary>
             <returns>BusResponse</returns>
@@ -58,10 +66,18 @@
         </member>
         <member name="M:Modules.Main.WebAPI.Controllers.BusController.AddBus(Modules.Main.DTOs.Bus.BusRequest)">
             <summary>
-            Login UserAsync - Async
+            Add Bus - Async
             </summary>
             <param name="busRequest">FromBody - UserRequest</param>
             <returns>BusResponse</returns>
+        </member>
+        <member name="M:Modules.Main.WebAPI.Controllers.BusController.DeleteBus(System.String)">
+            <summary>
+            De;ete Bus 
+            </summary>
+            <returns>BusResponse</returns>
+            <response code="200">Success</response>
+            <response code="400">Bad request by client</response>
         </member>
         <member name="T:Modules.Main.WebAPI.Controllers.BusScheduleController">
             <summary>

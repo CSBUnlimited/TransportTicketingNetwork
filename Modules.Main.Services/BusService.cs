@@ -20,6 +20,13 @@ namespace Modules.Main.Services
             _mapper = mapper;
         }
 
+        public async Task<BusViewModel> GetBusAsync(string busNumber)
+        {
+            Bus bus = await _mainUnitOfWork.BusRepository.GetBus(busNumber);
+
+            return _mapper.Map<BusViewModel>(bus);
+        }
+
         public async Task<IEnumerable<BusViewModel>> GetBusListAsync()
         {
             IEnumerable<Bus> buses = await _mainUnitOfWork.BusRepository.GetBusList();
