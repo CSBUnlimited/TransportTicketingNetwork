@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BaseResponse } from '../models';
 
 export default class ApiService {
 
@@ -8,12 +9,12 @@ export default class ApiService {
         
     }
 
-    _setTokenData(tokenData) {
-        localStorage.setItem('tokenData', JSON.stringify(tokenData));
+    _setTokenData(authToken) {
+        localStorage.setItem('authToken', JSON.stringify(authToken));
     }
 
-    get tokenData() {
-        return JSON.parse(localStorage.getItem('tokenData'));
+    public get authToken(): string {
+        return localStorage.getItem('authToken')
     }
 
     get headers() {
@@ -21,72 +22,44 @@ export default class ApiService {
             'Content-Type': 'application/json'
         }
 
-        let tokenData = this.tokenData;
+        let authToken = this.authToken;
 
-        if (tokenData) {
-            headers['Authorization'] = `Bearer ${tokenData.token}`;
+        if (authToken) {
+            headers['Authorization'] = `Bearer ${authToken}`;
         }
 
         return headers;
     }
 
-    _createResponse(status, response, isError = false) {
-
-        if (status === 401) {
-
-            localStorage.removeItem('tokenData');
-
-            window.location.href = '/login';
-
-            return {
-                status: status,
-                isSuccess: false,
-                data: [],
-                message: 'Unauthorized',
-                respondDateTime: new Date(response.respondDateTime)
-            }
-        }
-
-        if (isError) {
-            response = JSON.parse(response);
-        }
-
-        return {
-            status: response.status,
-            isSuccess: response.isSuccess,
-            data: response.data,
-            message: response.message,
-            respondDateTime: new Date(response.respondDateTime)
-        };
-    }
-
-    public get<Response>(url): Promise<Response> {
+    public get<Response = {}>(url): Promise<Response> {
         
         return new Promise<Response>((resolve, reject) => {
             
             axios.get(this.baseUrl + url, { headers: this.headers }).then(response => {
-                resolve(this._createResponse(response.request.status, response.data));
+                resolve(response.data as any);
             }).catch(err => {
-                resolve(this._createResponse(err.request.status, err.request.response, true));
+                let response: BaseResponse = JSON.parse(err.request.response) as BaseResponse;
+                
+                response.status = err.request.status;
+                response.isSuccess = false;
+                resolve(response as any);
             });
         });
     }
 
-    post(url, request, isLogin = false) {
+    public post<Response = {}, Request = {}>(url: string, request: Request): Promise<Response> {
 
-        return new Promise((resolve, reject) => {
+        return new Promise<Response>((resolve, reject) => {
 
             axios.post(this.baseUrl + url, request, { headers: this.headers }).then(response => {
-
-                let dataResponse = this._createResponse(response.request.status, response.data);
-
-                if (isLogin) {
-                    this._setTokenData(dataResponse.data[0]);
-                }
-
-                resolve(dataResponse);
+                resolve(response.data as any);
             }).catch(err => {
-                resolve(this._createResponse(err.request.status, err.request.response, true));
+                let response: BaseResponse = JSON.parse(err.request.response) as BaseResponse;
+                
+                response.status = err.request.status;
+                response.isSuccess = false;
+
+                resolve(response as any);
             });
         });
     }
@@ -96,9 +69,14 @@ export default class ApiService {
         return new Promise((resolve, reject) => {
 
             axios.put(this.baseUrl + url, request, { headers: this.headers }).then(response => {
-                resolve(this._createResponse(response.request.status, response.data));
+                resolve(response.data as any);
             }).catch(err => {
-                resolve(this._createResponse(err.request.status, err.request.response, true));
+                let response: BaseResponse = JSON.parse(err.request.response) as BaseResponse;
+                
+                response.status = err.request.status;
+                response.isSuccess = false;
+
+                resolve(response as any);
             });
         });
     }

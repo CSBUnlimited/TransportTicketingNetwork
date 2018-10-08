@@ -2,10 +2,15 @@ import * as React from 'react';
 import './App.css';
 import classNames from 'classnames';
 import { TopbarLayout, FooterLayout } from './app-layouts';
-import { BasePropsVM, BaseStateVM, GlobalEventConstants, NotificationMessageVM, NotifictionTypes, MenuItemVM } from '../shared';
+import { BasePropsVM, BaseStateVM, GlobalEventConstants, NotificationMessageVM, NotifictionTypes, MenuItemVM, UserVM } from '../shared';
 import { Growl, GrowlMessage } from 'primereact/growl'
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import { AppMenuComponent } from './menu/AppMenuComponent';
+import AppMenuProfileComponent from './menu/AppMenuProfileComponent';
+import { AuthenticationService } from '../shared/services/authentication.service';
+import { Route } from 'react-router';
+import LoginComponent from './authentication/LoginComponent';
+import SignUpComponent from './authentication/SignUpComponent';
 
 interface AppComponentPropsVM extends BasePropsVM {
 
@@ -13,7 +18,7 @@ interface AppComponentPropsVM extends BasePropsVM {
 
 interface AppComponentStateVM extends BaseStateVM {
     isLoggedIn: boolean;
-    username: string;
+    user: UserVM;
     staticMenuInactive: boolean;
     mobileMenuActive: boolean;
 }
@@ -26,8 +31,8 @@ class AppComponent extends React.Component<AppComponentPropsVM, AppComponentStat
     private isMenuClicked: boolean;
 
     public state: AppComponentStateVM = {
-        isLoggedIn: true,
-        username: "Anonymus",
+        isLoggedIn: AuthenticationService.isLoggedIn,
+        user: AuthenticationService.loggedInUser ? AuthenticationService.loggedInUser : {},
         staticMenuInactive: false,
         mobileMenuActive: false
     };
@@ -126,7 +131,7 @@ class AppComponent extends React.Component<AppComponentPropsVM, AppComponentStat
         });
 
         let topBarJSX: JSX.Element | null = (
-            this.state.isLoggedIn ? (<TopbarLayout onToggleMenu={this.onToggleMenu} username={this.state.username} />) : null
+            this.state.isLoggedIn ? (<TopbarLayout onToggleMenu={this.onToggleMenu} username={this.state.user.username} />) : null
         );
 
         let menuBarJSX: JSX.Element | null = this.state.isLoggedIn ? (
@@ -135,14 +140,32 @@ class AppComponent extends React.Component<AppComponentPropsVM, AppComponentStat
                 <ScrollPanel ref={(el) => this.layoutMenuScrollerElementRef = el} style={{ height: '100%' }}>
                     <div className="layout-sidebar-scroll-content" >
                         <div className="layout-logo">
-                            <img alt="Logo" src="favicon.ico" />
+                            <img alt="Logo" src="favicon.ico" height="30px" />
                         </div>
-                        {/* <AppInlineProfile /> */}
+                        <AppMenuProfileComponent user={this.state.user} />
                         <AppMenuComponent onMenuItemClick={this.menuItemCommand} />
                     </div>
                 </ScrollPanel>
             </div>
         ) : null;
+
+        let internalsJSX: JSX.Element;
+
+        if (this.state.isLoggedIn) {
+            internalsJSX = (
+                <>
+                    <Route path="/" />
+                </>
+            )
+        }
+        else {
+            internalsJSX = (
+                <>
+                    <Route path="/" exact component={LoginComponent} />
+                    <Route path="/signup" exact component={SignUpComponent} />
+                </>
+            );
+        }
 
         return (
             <div className={wrapperClass} onClick={this.onWrapperClick}>
@@ -154,7 +177,7 @@ class AppComponent extends React.Component<AppComponentPropsVM, AppComponentStat
                 <Growl ref={(el) => { this.notifactionElementRef = el; }} style={{ marginTop: '75px' }} />
 
                 <div className="layout-main min-height_App">
-
+                    {internalsJSX}
                 </div>
 
                 <FooterLayout />

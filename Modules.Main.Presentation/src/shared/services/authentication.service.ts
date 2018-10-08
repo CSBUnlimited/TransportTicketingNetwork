@@ -1,34 +1,55 @@
 import ApiService from './api.service';
+import { UserVM } from '../models';
 
 export class AuthenticationService {
-    
+
     private apiService: ApiService;
-    
+
     constructor() {
         this.apiService = new ApiService();
-        this.tokenData = this.apiService.tokenData;
     }
 
-    public get isLoggedIn() {
-        return (this.tokenData ? true : false);
-    }
+    public static get loggedInUser(): UserVM | null {
+        let token: string = localStorage.getItem('authToken');
 
-    
-
-
-
-    public redirectIfNotLoggedIn() {
-        if (!this.isLoggedIn) {
-            window.location.href = '/';
+        if (!token) {
+            return null;
         }
 
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+
+        let tokenData = JSON.parse(window.atob(base64));
+
+        let user: UserVM = {
+            username: tokenData['unique_name'],
+            firstName: tokenData['firstName'],
+            lastName: tokenData['lastName'],
+            gender: tokenData['gender']
+        }
+
+        return user;
     }
 
+    public static get isLoggedIn(): boolean {
+        let token: string = localStorage.getItem('authToken');
+        return (token ? true : false);
+    }
 
+    public redirectIfNotLoggedIn() {
+        if (!AuthenticationService.isLoggedIn) {
+            window.location.href = '/';
+        }
+    }
 
     public logout() {
-        localStorage.removeItem('tokenData');
+        this.apiService.get('Authorization/LogoutUserAsync');
+        localStorage.removeItem('authToken');
         window.location.href = '/';
     }
 
+    public login(token: string) {
+        localStorage.setItem('authToken', token);
+        window.location.href = '/';
+    }
 }
