@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Base.Services\Common.Base.Services.csproj" />
+    <ProjectReference Include="..\Common.Configurations.Constants\Common.Configurations.Constants.csproj" />
+    <ProjectReference Include="..\Common.Methods\Common.Methods.csproj" />
     <ProjectReference Include="..\Modules.Main.Core\Modules.Main.Core.csproj" />
     <ProjectReference Include="..\Modules.Main.Models\Modules.Main.Models.csproj" />
     <ProjectReference Include="..\Modules.Main.ViewModels\Modules.Main.ViewModels.csproj" />

@@ -56,7 +56,7 @@ namespace TransportTicketingNetwork.Database.Seed
             #endregion
 
             // Check that need to check with current records
-            bool isNeedCheck = !currentUserRoles.Any();
+            bool isNeedCheck = currentUserRoles.Any();
 
             // Check that tag type need to add or not
             foreach (UserRole userRole in userRoles)

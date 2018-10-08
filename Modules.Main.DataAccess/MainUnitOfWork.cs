@@ -16,6 +16,7 @@ namespace Modules.Main.DataAccess
         public IJourneyRepository JourneyRepository { get; }
         public IRouteRepository RouteRepository { get; }
         public IBusStopRepository BusStopRepository { get; }
+        public IUserRoleRepository UserRoleRepository { get; }
 
         #endregion
 
@@ -28,8 +29,8 @@ namespace Modules.Main.DataAccess
             IBusScheduleRepository busScheduleRepository,
             IJourneyRepository journeyRepository,
             IRouteRepository routeRepository,
-            IBusStopRepository busStopRepository
-
+            IBusStopRepository busStopRepository,
+            IUserRoleRepository userRoleRepository
 
 
 
@@ -42,6 +43,7 @@ namespace Modules.Main.DataAccess
             JourneyRepository = journeyRepository;
             RouteRepository = routeRepository;
             BusStopRepository = busStopRepository;
+            UserRoleRepository = userRoleRepository;
         }
     }
 }

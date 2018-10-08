@@ -16,7 +16,7 @@ namespace Modules.Main.WebAPI.Controllers
 {
 
     /// <summary>
-    /// Users Controller
+    /// Authorization Controller
     /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]

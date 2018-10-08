@@ -10,13 +10,18 @@ namespace TransportTicketingNetwork.Database.TableConfigurations.CMN
         {
             builder.ToTable("MultiPurposeTags", "cmn");
 
+            builder.HasIndex(mpt => new {mpt.MultiPurposeTagTypeId, mpt.EnumValue})
+                .IsUnique();
+
             builder.Property(mpt => mpt.Description)
                 .HasMaxLength(100);
 
             builder.Property(mpt => mpt.EnumValue)
                 .IsRequired();
 
-            builder.HasOne(mpt => mpt.MultiPurposeTagType).WithMany(mptt => mptt.MultiPurposeTags).HasForeignKey(mpt => mpt.MultiPurposeTagTypeId);
+            builder.HasOne(mpt => mpt.MultiPurposeTagType)
+                .WithMany(mptt => mptt.MultiPurposeTags)
+                .HasForeignKey(mpt => mpt.MultiPurposeTagTypeId);
         }
     }
 }

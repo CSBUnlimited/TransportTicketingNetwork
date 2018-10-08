@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Common.Core.DataAccess;
+﻿using Common.Core.DataAccess;
 using Modules.Main.Core.Repositories;
-using Modules.Main.Models;
 
 namespace Modules.Main.Core.DataAccess
 {
@@ -11,11 +8,12 @@ namespace Modules.Main.Core.DataAccess
         #region Repositories
 
         IUserRepository UserRepository { get; }
+        IApplicationUserRepository ApplicationUserRepository { get; }
         IBusRepository BusRepository { get; }
         IRouteRepository RouteRepository { get; }
         IBusScheduleRepository BusScheduleRepository { get; }
         IJourneyRepository JourneyRepository { get; }
-
+        IUserRoleRepository UserRoleRepository { get; }
 
         #endregion
     }

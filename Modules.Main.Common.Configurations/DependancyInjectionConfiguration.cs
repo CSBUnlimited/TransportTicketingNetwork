@@ -33,6 +33,7 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IBusScheduleRepository, BusScheduleRepository>(); 
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IBusStopRepository, BusStopRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             #endregion
 
@@ -50,6 +51,7 @@ namespace Modules.Main.Common.Configurations
             services.AddScoped<IBusStopService, BusStopService>();
             services.AddScoped<IBusService, BusService>();
             services.AddScoped<IBusScheduleService, BusScheduleService>();
+            services.AddScoped<IUserService, UserService>();
 
             #endregion
 

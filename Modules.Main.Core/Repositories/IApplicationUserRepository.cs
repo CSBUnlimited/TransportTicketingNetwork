@@ -12,5 +12,7 @@ namespace Modules.Main.Core.Repositories
         /// <param name="username">Username needed</param>
         /// <returns>Application User or null, if not found</returns>
         Task<ApplicationUser> GetApplicationUserByUserNameAsync(string username);
+
+
     }
 }

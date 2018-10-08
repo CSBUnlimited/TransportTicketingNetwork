@@ -1,22 +1,18 @@
-﻿using Common.Base.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using FluentValidation;
 
 namespace Modules.Main.ViewModels
 {
-    public class UserViewModel : BaseViewModel
+    public class UserExtViewModel : UserViewModel
     {
-        public string Username { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Mobile { get; set; }
-        public string Email { get; set; }
-        public string Gender { get; set; }
-        public string UserRole { get; set; }
+        public string Password { get; set; }
     }
 
-    public class UserValidator : AbstractValidator<UserViewModel>
+    public class UserExtValidator : AbstractValidator<UserExtViewModel>
     {
-        public UserValidator()
+        public UserExtValidator()
         {
             RuleFor(u => u.Username)
                 .NotEmpty()
@@ -46,14 +42,18 @@ namespace Modules.Main.ViewModels
                 .EmailAddress()
                 .WithMessage("Invalid email address");
 
-            RuleFor(u => u.UserRole)
-                .NotEmpty()
-                .WithMessage("UserRole cannot be empty.");
-
             RuleFor(u => u.Gender)
                 .NotEmpty()
                 .Must(gender => gender == "Male" || gender == "Female")
                 .WithMessage("Gender should be either 'Male' or 'Female'");
+
+            RuleFor(u => u.UserRole)
+                .NotEmpty()
+                .WithMessage("UserRole cannot be empty.");
+
+            RuleFor(u => u.Password)
+                .NotEmpty()
+                .WithMessage("Password cannot be empty.");
         }
     }
 }
